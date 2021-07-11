@@ -1,0 +1,227 @@
+<div class="flex flex-col px-5 pb-8 my-2 mb-4 bg-white">
+  <form id=formId (ngSubmit)="save()" [formGroup]="form">
+
+  <div class="flex my-6 mb-6 -mx-6 bg md:flex">
+    <div class="grid w-full grid-cols-2 gap-4 pl-6 pr-6">
+      <div>
+        <div class="w-full">
+          <label for="price" class="block text-sm font-medium text-gray-700"
+            >Tanggal</label
+          >
+          <div class="relative mt-1 rounded-md shadow-sm">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+            ></div>
+            <input
+            formControlName="tanggal"
+            [(ngModel)]="detail.tanggal"
+              type="date"
+              name="price"
+              id="price"
+              class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="0.00"
+            />
+          </div>
+        </div>
+        <div class="w-full mt-4">
+          <label for="price" class="block text-sm font-medium text-gray-700"
+            >No</label
+          >
+          <div class="relative mt-1 rounded-md shadow-sm">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+            ></div>
+            <input
+            formControlName="no"
+            [(ngModel)]="detail.no"
+              type="text"
+              name="price"
+              id="price"
+              class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="No."
+            />
+          </div>
+        </div>
+
+        <div class="w-full mt-4">
+          <label for="price" class="block text-sm font-medium text-gray-700"
+            >Nomor Polisi Kendaraan</label
+          >
+          <div class="relative mt-1 rounded-md shadow-sm">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+            ></div>
+            <input
+            formControlName="no_polisi_kendaraan"
+              type="text"
+              [(ngModel)]="detail.no_polisi_kendaraan"
+              name="price"
+              id="price"
+              class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Nomor Polisi Kendaraan"
+            />
+          </div>
+        </div>
+        <div class="w-full mt-4">
+          <label for="price" class="block text-sm font-medium text-gray-700"
+            >Nama Pengemudi</label
+          >
+          <div class="relative mt-1 rounded-md shadow-sm">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+            ></div>
+            <input
+            formControlName="nama_pengemudi"
+            [(ngModel)]="detail.nama_pengemudi"
+              type="text"
+              name="price"
+              id="price"
+              class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Nama Pengemudi"
+            />
+          </div>
+        </div>
+        <div class="w-full mt-4">
+          <label for="price" class="block text-sm font-medium text-gray-700"
+            >Asal TPS</label
+          >
+          <div class="relative mt-1 rounded-md shadow-sm">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+            ></div>
+            <!-- <input
+              type="text"
+              name="price"
+              id="price"
+              class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="No."
+            /> -->
+
+            <select name="" (change)="change($event)" class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="">
+              <!-- <option value="" disabled>Pilih Asal TPS</option> -->
+              <option [selected]="detail.asal_tps == 'DBM' ? true :false" value="DBM">DBM</option>
+              <option [selected]="detail.asal_tps == 'AMD' ? true :false" value="AMD">AMD</option>
+              <option [selected]="detail.asal_tps == 'AKM' ? true :false" value="AKM">AKM</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="ml-8">
+        <div class="w-full">
+          <div class="relative text-left">
+            <div class="relative flex items-center">
+              <div
+                class="absolute z-10 h-full mb-8 text-blue-500 border-r-2 border-blue-500 left-1 md:left-2 top-10"
+              >
+                <i class="absolute -ml-4 -top-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="#3B82F6"
+                    width="32"
+                    height="32"
+                    version="1.1"
+                    id="circle-11"
+                    viewBox="0 0 11 11"
+                  >
+                    <path
+                      d="M10,5.5C10,7.9853,7.9853,10,5.5,10S1,7.9853,1,5.5S3.0147,1,5.5,1S10,3.0147,10,5.5z"
+                    />
+                  </svg>
+                </i>
+              </div>
+
+              <div class="w-full ml-10">
+                <label
+                  for="price"
+                  class="block text-sm font-medium text-gray-700"
+                  >Kota Asal</label
+                >
+                <div class="relative mt-1 rounded-md shadow-sm">
+                  <div
+                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                  ></div>
+                  <input
+                  [(ngModel)]="detail.kota_asal"
+                  formControlName="kota_asal"
+                    type="text"
+                    name="price"
+                    id="price"
+                    class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Kota Asal"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="relative flex items-center mt-4">
+              <div
+                class="absolute z-10 h-0 -mt-4 text-blue-500 border-r-2 border-blue-500 left-1 md:left-2 top-10"
+              >
+                <i class="absolute -ml-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    width="28"
+                    height="28"
+                    stroke="#3B82F6"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-circle"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                  </svg>
+                </i>
+              </div>
+
+              <div class="w-full ml-10">
+                <label
+                  for="price"
+                  class="block text-sm font-medium text-gray-700"
+                  >Kota Tujuan</label
+                >
+                <div class="relative mt-1 rounded-md shadow-sm">
+                  <div
+                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                  ></div>
+                  <input
+                  formControlName="kota_tujuan"
+                    type="text"
+                    [(ngModel)]="detail.kota_tujuan"
+                    name="price"
+                    id="price"
+                    class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Kota Tujuan"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid w-full grid-cols-2 gap-4 pl-6 pr-6">
+    <div></div>
+    <div class="flex justify-end">
+      <button
+      [routerLink]="['/acceptance/list']"
+        type="button"
+        class="px-4 py-2 mr-2 text-sm font-normal text-white bg-red-500 rounded min-h-10 hover:bg-blue-700"
+      >
+        Kembali
+      </button>
+      <button
+        type="submit"
+        class="flex items-center justify-center px-4 py-2 text-sm font-normal text-white bg-blue-500 rounded min-h-10 hover:bg-blue-700"
+      >
+      <div [hidden]="!isLoading" class="w-3 h-3 mr-2 border-t-2 border-b-2 border-white rounded-full animate-spin"></div>
+
+        Simpan
+      </button>
+    </div>
+  </div>
+</form>
+
+</div>

@@ -1,0 +1,59 @@
+
+<div class="grid grid-cols-2 gap-4 p-6">
+  <div>
+    <span>Minggu, 29 Juni 2021</span>
+    <h1 class="mt-2 text-4xl font-bold text-blue-500">BTB - Bukti Timbangan Berat</h1>
+    <div class="mt-1 font-light"></div>
+  </div>
+  <div>
+    <h1 class="text-4xl font-bold text-right text-gray-500">02 : 40</h1>
+  </div>
+</div>
+<section class="px-4 pt-4 pb-4 space-y-4 sm:px-6 lg:px-4 xl:px-6 sm:pb-6 lg:pb-4 xl:pb-6">
+<ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+  <li *ngFor="let project of projects" class="bg-white">
+    <a  [routerLink]="['/btb/manage/checker', project.id]"  class="block p-4 bg-blue-500 border border-gray-200 rounded-lg hover:bg-light-blue-500 hover:border-transparent hover:shadow-lg group">
+
+      <dl class="flex flex-row items-center">
+
+        <div class="flex-grow p-4">
+
+          <div class="flex flex-wrap">
+
+            <div class="relative flex-1 flex-grow w-full max-w-full pr-4">
+              <p class="text-xs font-normal text-gray-100 uppercase">
+                No. Polisi:
+              </p>
+              <div class="mt-0 font-semibold text-gray-100">
+                <span class="text-xl">{{project.no_polisi_kendaraan}}</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="flex flex-wrap mt-4">
+
+            <div class="relative flex-1 flex-grow w-full max-w-full pr-4">
+              <p class="text-xs font-normal text-gray-100 uppercase">
+                Pengemudi:
+              </p>
+              <div class="mt-0 font-semibold text-gray-100">
+                <span class="text-xl">{{project.nama_pengemudi}}</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+       <div
+       [routerLink]="['/acceptance/manage/detail',project.id]"
+        class="flex-shrink cursor-pointer">
+          <span class="inline-flex items-center justify-center w-10 h-10 text-center text-white bg-white rounded-full shadow-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#3B82F6"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+        </span>
+       </div>
+      </dl>
+    </a>
+  </li>
+
+</ul>
+</section>

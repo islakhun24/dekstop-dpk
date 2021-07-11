@@ -1,0 +1,37 @@
+// TB_AREA_PARK
+
+[
+    {
+        "id":1,
+        "nama_area":"Parkiran Lt 1",
+        "slot": 20
+    },
+    {
+        "id":2,
+        "nama_area":"Parkiran Lt 2",
+        "slot": 10
+    }
+]
+
+//TB_PARKING
+
+[
+    {
+        "no_kendaran":"KA-01-HH-1234",
+        "in":"12/06/97 : 00:00:00",
+        "id_area":1,
+        "out":"12/06/97 : 10:00:00",
+        "price":100
+    }
+]
+
+//TB_BIAYA
+
+[
+    {
+        "id":1,
+        "price":10,
+        "first_hour":2,
+        "pinalty_per_hour":10
+    }
+]

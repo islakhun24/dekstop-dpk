@@ -1,0 +1,12 @@
+.isNotActive{
+  @apply flex flex-row items-center h-10 px-3 rounded-lg text-gray-700 hover:bg-blue-600 hover:text-gray-100
+}
+
+.isActive{
+  @apply flex flex-row items-center h-10 px-3 rounded-lg text-gray-100 bg-blue-500
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

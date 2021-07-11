@@ -1,0 +1,60 @@
+<section class="flex flex-col items-center object-cover h-screen bg-fixed bg-contain md:flex-row" style="background-image: url('https://topcareer.id/wp-content/uploads/2021/03/1561120667465.jpg')">
+
+  <div class="hidden w-full h-screen lg:block md:w-1/2 xl:w-2/3">
+    <!-- <img src="" alt="" class="object-cover w-full h-full"> -->
+  </div>
+
+  <div class="flex items-center justify-center w-full h-screen px-6 bg-blue-200 bg-opacity-80 md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 lg:px-16 xl:px-12">
+
+    <div class="w-full h-100">
+
+
+      <h1 class="mt-12 mb-4 text-4xl font-normal leading-tight md:text-4xl">Regulated <span class="font-bold text-blue-700">Agen</span></h1>
+      <div  [hidden]="!isMessage" class="pb-4 text-left transition duration-500 ease-in-out lg:pb-4">
+        <div class="flex items-center w-full p-2 leading-none text-red-100 bg-red-500 lg:rounded-md lg:inline-flex" role="alert">
+          <span class="flex px-2 py-1 mr-3 text-xs font-bold uppercase bg-red-800 rounded-md">Failed</span>
+          <span class="flex-auto mr-2 font-normal text-left">{{message}}</span>
+        </div>
+      </div>
+      <form class="" [formGroup]="form" (ngSubmit)="login()" >
+        <div>
+          <label class="block text-gray-700">Username</label>
+          <input type="email" name="" formControlName="username" id="" placeholder="Enter Username" class="w-full px-4 py-3 mt-2 bg-gray-200 border rounded-lg focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autocomplete required>
+        </div>
+
+        <div class="mt-4">
+          <label class="block text-left text-gray-700">Password</label>
+          <!-- <label class="mt-2 text-right">
+            <a href="#" class="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">Forgot Password?</a>
+          </label> -->
+          <input type="password" name="" id="" formControlName="password" placeholder="Enter Password" minlength="6" class="w-full px-4 py-3 mt-2 bg-gray-200 border rounded-lg focus:border-blue-500 focus:bg-white focus:outline-none" required>
+        </div>
+
+
+
+        <button type="submit" class="flex justify-center w-full px-4 py-3 mt-6 font-semibold text-white bg-blue-500 rounded-lg hover:bg-indigo-400 focus:bg-indigo-400">
+          <div [hidden]="!isLoading" class="w-6 h-6 mr-4 border-t-2 border-b-2 border-white rounded-full animate-spin"></div>
+
+          Log In</button>
+      </form>
+
+      <!-- <hr class="w-full my-6 border-gray-300"> -->
+
+      <!-- <button type="button" class="block w-full px-4 py-3 font-semibold text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:bg-gray-100">
+            <div class="flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="w-6 h-6" viewBox="0 0 48 48"><defs><path id="a" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></defs><clipPath id="b"><use xlink:href="#a" overflow="visible"/></clipPath><path clip-path="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z"/><path clip-path="url(#b)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"/><path clip-path="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"/><path clip-path="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"/></svg>
+            <span class="ml-4">
+            Log in
+            with
+            Google</span>
+            </div>
+          </button>
+
+      <p class="mt-8">Need an account? <a href="#" class="font-semibold text-blue-500 hover:text-blue-700">Create an
+              account</a></p> -->
+
+
+    </div>
+  </div>
+
+</section>

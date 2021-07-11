@@ -1,0 +1,93 @@
+
+<section class="px-8 pt-4 pb-4 space-y-4 sm:px-6 lg:px-4 xl:px-6 sm:pb-6 lg:pb-4 xl:pb-6">
+
+  <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+    <li x-for="item in data" class="bg-white">
+      <div   class="block p-4 bg-blue-500 border border-gray-200 rounded-lg group">
+        <dl class="flex flex-row items-center">
+          <div class="flex-grow p-4">
+            <div class="pb-4">
+              <h1 class="text-4xl font-bold text-gray-100">%</h1>
+            </div>
+            <div class="flex flex-wrap">
+
+              <div class="relative flex-1 flex-grow w-full max-w-full pr-4">
+                <h5 class="text-sm font-light text-gray-100">
+                  Harga saat ini:
+                </h5>
+                <div class="flex gap-1 mt-2 text-3xl font-semibold text-gray-100">
+                  <div>Rp.</div>
+                  <span class="">500</span>
+                  <span class="mt-3 text-sm font-thin">/Kg</span>
+                </div>
+              </div>
+
+            </div>
+            <div class="w-full mt-2">
+              <a [routerLink] class="justify-center px-8 py-1 mt-2 text-xs text-blue-500 bg-white rounded-full hover:bg-light-blue-500 hover:border-transparent hover:shadow-lg group ">
+
+                Edit harga
+              </a>
+            </div>
+          </div>
+
+        </dl>
+      </div>
+    </li>
+
+  </ul>
+
+  <div class="">
+    <h1 class="mt-8 text-3xl font-semibold">Riwayat Harga</h1>
+    <hr class="h-0.5 mt-2 mb-2 bg-gray-300"/>
+    <h5 class="text-base font-light text-black">
+      Update perubahan harga
+    </h5>
+
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <div class="flex flex-col mt-6">
+      <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="grid py-2 align-middle xl:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-2 sm:px-6 lg:px-8">
+          <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    No.
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Tanggal
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Harga/Kg
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    1.
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                      Active
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                    Admin
+                  </td>
+
+                </tr>
+
+                <!-- More people... -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
