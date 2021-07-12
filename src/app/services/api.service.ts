@@ -72,4 +72,46 @@ export class ApiService {
   customer_list(){
     return this.http.get(`${base_url}main/customer/list`)
   }
+
+  customer_create(formdata:any){
+    return this.http.post(`${base_url}main/customer/create`,formdata)
+  }
+
+  customer_detail(id:any){
+    return this.http.get(`${base_url}main/customer/detail/${id}`)
+  }
+
+  customer_edit(id:any, formdata:any){
+    return this.http.put(`${base_url}main/customer/edit/${id}`, formdata)
+  }
+
+  customer_delete(id:any){
+    return this.http.delete(`${base_url}main/customer/delete/${id}`)
+
+  }
+
+  //Harga
+
+  harga_get_data(){
+    return this.http.get(`${base_url}main/harga/get_data`)
+  }
+
+  harga_history(){
+    return this.http.get(`${base_url}main/harga/history`)
+  }
+
+  harga_create(formdata:any){
+    return this.http.post(`${base_url}main/harga/create`, formdata)
+  }
+
+  //User
+
+  user_list(){
+    return this.http.get(`${base_url}main/user/list`)
+
+  }
+
+  user_create(formdata:any){
+    return this.http.post(`${base_url}main/user/create`, formdata)
+  }
 }
