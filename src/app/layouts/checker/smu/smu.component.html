@@ -1,0 +1,114 @@
+<div class="min-w-full min-h-full">
+  <div class="flex justify-end">
+    <button (click)="save()"  class="flex items-center gap-2 px-8 py-2 font-semibold text-white bg-blue-500 rounded-md"><svg width="16" height="16" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
+      <g>
+        <g>
+          <path d="M447.229,67.855h-43.181v-43.18C404.049,11.103,392.944,0,379.379,0H64.771C51.2,0,40.097,11.103,40.097,24.675V419.47    c0,13.571,11.103,24.675,24.675,24.675h43.181v43.181c0,13.571,11.098,24.675,24.675,24.675h209.729    c13.565,0,32.762-7.612,42.638-16.908l68.929-64.882c9.888-9.296,17.969-28.012,17.969-41.583l0.012-296.096    C471.904,78.959,460.8,67.855,447.229,67.855z M107.951,92.531v333.108h-43.18c-3.343,0-6.168-2.825-6.168-6.168V24.675    c0-3.343,2.825-6.168,6.168-6.168H379.38c3.337,0,6.168,2.825,6.168,6.168v43.181H132.626    C119.049,67.856,107.951,78.959,107.951,92.531z M441.24,416.737l-68.929,64.877c-1.412,1.327-3.251,2.628-5.281,3.867v-56.758    c0-4.238,1.709-8.051,4.528-10.888c2.844-2.819,6.656-4.533,10.894-4.533h61.718C443.213,414.602,442.233,415.799,441.24,416.737z     M453.385,388.626c0,1.832-0.334,3.954-0.839,6.168h-70.095c-18.721,0.037-33.89,15.206-33.928,33.928v64.024    c-2.202,0.445-4.324,0.746-6.168,0.746H132.626v0.001c-3.35,0-6.168-2.825-6.168-6.168V92.53c0-3.343,2.819-6.168,6.168-6.168    h314.602c3.343,0,6.168,2.825,6.168,6.168L453.385,388.626z"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M379.379,154.216H200.488c-5.114,0-9.253,4.139-9.253,9.253c0,5.114,4.14,9.253,9.253,9.253h178.891    c5.108,0,9.253-4.139,9.253-9.253S384.487,154.216,379.379,154.216z"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M379.379,277.59H200.488c-5.114,0-9.253,4.139-9.253,9.253c0,5.114,4.14,9.253,9.253,9.253h178.891    c5.108,0,9.253-4.139,9.253-9.253C388.632,281.728,384.487,277.59,379.379,277.59z"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M299.187,339.277h-98.698c-5.114,0-9.253,4.139-9.253,9.253s4.139,9.253,9.253,9.253h98.698    c5.108,0,9.247-4.139,9.247-9.253S304.295,339.277,299.187,339.277z"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M379.379,215.903H200.488c-5.114,0-9.253,4.139-9.253,9.253s4.14,9.253,9.253,9.253h178.891    c5.108,0,9.253-4.139,9.253-9.253S384.487,215.903,379.379,215.903z"/>
+        </g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      </svg>
+      Document</button>
+  </div>
+  <div class="mt-8 overflow-x-auto">
+    <table class="w-full table-auto min-w-max">
+      <thead>
+          <tr class="text-sm leading-normal text-gray-600 uppercase bg-gray-200">
+              <th class="px-6 py-3 text-left">No.</th>
+              <th class="px-6 py-3 text-left">Status</th>
+              <th class="px-6 py-3 text-left">SMU</th>
+              <th class="px-6 py-3 text-left">Koli</th>
+              <th class="px-6 py-3 text-left">Nama Barang</th>
+              <th class="px-6 py-3 text-left">Berat (KG)</th>
+              <th class="px-6 py-3 text-left">Check</th>
+          </tr>
+      </thead>
+      <tbody class="text-sm font-light text-gray-600">
+        <tr *ngFor="let data of data; index as i"   >
+          <td  [class]="i===0 && data.checker==0?'active':(data.checker==2 ? 'active1':((data.checker==1 ? 'active2':'not_active')))">
+
+              <p class="text-gray-900 whitespace-no-wrap">{{i+1}}</p>
+            </td>
+            <td  [class]="i===0 && data.checker==0?'active':(data.checker==2 ? 'active1':((data.checker==1 ? 'active2':'not_active')))">
+              <p class="text-gray-900 border pt-0.5 pb-0.5 px-2 border-blue-500 text-center rounded whitespace-no-wrap">{{data.status}}</p>
+            </td>
+            <td  [class]="i===0 && data.checker==0?'active':(data.checker==2 ? 'active1':((data.checker==1 ? 'active2':'not_active')))">
+              <p class="text-gray-900 whitespace-no-wrap">
+                  {{data.smu}}
+                </p>
+            </td>
+            <td  [class]="i===0 && data.checker==0?'active':(data.checker==2 ? 'active1':((data.checker==1 ? 'active2':'not_active')))">
+              <p class="text-gray-900 whitespace-no-wrap">
+                {{data.koli}}
+              </p>
+            </td>
+            <td  [class]="i===0 && data.checker==0?'active':(data.checker==2 ? 'active1':((data.checker==1 ? 'active2':'not_active')))">
+              <p class="text-gray-900 whitespace-no-wrap">
+                {{data.nama_barang}}
+              </p>
+            </td>
+            <td  [class]="i===0 && data.checker==0?'active':(data.checker==2 ? 'active1':((data.checker==1 ? 'active2':'not_active')))">
+              <p class="text-gray-900 whitespace-no-wrap">
+                {{data.berat_total}} kg
+              </p>
+            </td>
+            <td  [class]="i===0 && data.checker==0?'active':(data.checker==2 ? 'active1':((data.checker==1 ? 'active2':'not_active')))">
+              <div class="flex items-center justify-center flex-shrink-0 w-6 h-6 mr-2 bg-white border-2 border-gray-400 rounded focus-within:border-blue-500">
+                <input type="checkbox" (change)="check($event,i)" class="absolute opacity-0">
+                <svg class="hidden w-4 h-4 text-green-500 pointer-events-none fill-current" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+              </div>
+            </td>
+        </tr>
+      </tbody>
+  </table>
+</div>
+</div>

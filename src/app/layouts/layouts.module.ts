@@ -1,3 +1,4 @@
+import { CheckerComponent } from './checker/checker.component';
 import { CustomerComponent } from './customer/customer.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,7 @@ import { HargaComponent } from './harga/harga.component';
 @NgModule({
   declarations: [
     AcceptanceComponent,
-    DashboardComponent,BtbComponent, DokumenComponent, UserComponent, HargaComponent, CustomerComponent
+    DashboardComponent,BtbComponent, DokumenComponent, UserComponent, HargaComponent, CustomerComponent, CheckerComponent
   ],
   imports: [
     CommonModule,

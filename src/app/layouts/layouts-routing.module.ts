@@ -1,3 +1,4 @@
+import { CheckerComponent } from './checker/checker.component';
 import { CustomerComponent } from './customer/customer.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -48,6 +49,11 @@ const routes: Routes = [
     path: 'customer',
     component: CustomerComponent,
     loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule)
+  },
+  {
+    path: 'checkers',
+    component: CheckerComponent,
+    loadChildren: () => import('./checker/checker.module').then(m => m.CheckerModule)
   }
 ];
 

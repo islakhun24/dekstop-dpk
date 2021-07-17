@@ -14,7 +14,7 @@ const routes: Routes = [
     component: CheckerComponent
   },
   {
-    path:'reject',
+    path:'reject/:id',
     component: RejectComponent
   }
 ];

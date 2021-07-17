@@ -7,17 +7,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  projects:any = {}
+  show : boolean = true
+  project:any = {}
+  isList : boolean = true
   constructor(
     private apiService:ApiService
-  ) { }
+  ) {
+    this.apiService.project_get().subscribe((data:any)=>{
+
+      this.project = data.data
+      this.isList = false
+
+      if(data.status==0){
+
+        this.show = false
+      }
+      if(data.status==1){
+        this.show = true
+      }
+    },err=>{
+      console.log(err);
+      this.isList = false
+
+    })
+  }
 
   ngOnInit(): void {
-    this.apiService.project_list().subscribe((data:any)=>{
-      // console.log(data);
 
-      this.projects = data.data
-    })
   }
 
 }

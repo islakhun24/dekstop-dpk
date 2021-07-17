@@ -1,0 +1,23 @@
+.active {
+  @apply px-5 py-5 text-sm bg-blue-100 border-b border-gray-200
+}
+
+.not_active {
+  @apply px-5 py-5 text-sm border-b border-gray-200
+}
+.active1 {
+  @apply px-5 py-5 text-sm bg-green-100 border-b border-gray-200
+}
+.active2 {
+  @apply px-5 py-5 text-sm bg-yellow-100 border-b border-gray-200
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

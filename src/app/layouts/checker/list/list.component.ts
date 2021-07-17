@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+
   show : boolean = true
   project:any = {}
   isList : boolean = true
@@ -35,4 +36,5 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
 }

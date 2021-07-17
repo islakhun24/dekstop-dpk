@@ -1,181 +1,168 @@
 <div class="flex flex-col px-5 pb-8 my-2 mb-4 ">
-  <form id=formId >
+  <form [formGroup]="form" (ngSubmit)="save()"  >
 
-  <div class="flex my-6 mb-6 -mx-6 bg md:flex">
-    <div class="grid w-full gap-4 pl-6 pr-6 xl:grid-cols-2 2xl:grid-cols-2 lg:grid-cols-2">
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 53 53" style="enable-background:new 0 0 53 53;" width="128" height="128" xml:space="preserve">
-          <path style="fill:#E7ECED;" d="M18.613,41.552l-7.907,4.313c-0.464,0.253-0.881,0.564-1.269,0.903C14.047,50.655,19.998,53,26.5,53  c6.454,0,12.367-2.31,16.964-6.144c-0.424-0.358-0.884-0.68-1.394-0.934l-8.467-4.233c-1.094-0.547-1.785-1.665-1.785-2.888v-3.322  c0.238-0.271,0.51-0.619,0.801-1.03c1.154-1.63,2.027-3.423,2.632-5.304c1.086-0.335,1.886-1.338,1.886-2.53v-3.546  c0-0.78-0.347-1.477-0.886-1.965v-5.126c0,0,1.053-7.977-9.75-7.977s-9.75,7.977-9.75,7.977v5.126  c-0.54,0.488-0.886,1.185-0.886,1.965v3.546c0,0.934,0.491,1.756,1.226,2.231c0.886,3.857,3.206,6.633,3.206,6.633v3.24  C20.296,39.899,19.65,40.986,18.613,41.552z"/>
-          <g>
-            <path style="fill:#556080;" d="M26.953,0.004C12.32-0.246,0.254,11.414,0.004,26.047C-0.138,34.344,3.56,41.801,9.448,46.76   c0.385-0.336,0.798-0.644,1.257-0.894l7.907-4.313c1.037-0.566,1.683-1.653,1.683-2.835v-3.24c0,0-2.321-2.776-3.206-6.633   c-0.734-0.475-1.226-1.296-1.226-2.231v-3.546c0-0.78,0.347-1.477,0.886-1.965v-5.126c0,0-1.053-7.977,9.75-7.977   s9.75,7.977,9.75,7.977v5.126c0.54,0.488,0.886,1.185,0.886,1.965v3.546c0,1.192-0.8,2.195-1.886,2.53   c-0.605,1.881-1.478,3.674-2.632,5.304c-0.291,0.411-0.563,0.759-0.801,1.03V38.8c0,1.223,0.691,2.342,1.785,2.888l8.467,4.233   c0.508,0.254,0.967,0.575,1.39,0.932c5.71-4.762,9.399-11.882,9.536-19.9C53.246,12.32,41.587,0.254,26.953,0.004z"/>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          <g>
-          </g>
-          </svg>
+    <div class="flex my-6 mb-6 -mx-6 bg md:flex">
+      <div class="grid w-full gap-4 pl-6 pr-6 xl:grid-cols-2 2xl:grid-cols-2 lg:grid-cols-2">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 53 53" style="enable-background:new 0 0 53 53;" width="128" height="128" xml:space="preserve">
+            <path style="fill:#E7ECED;" d="M18.613,41.552l-7.907,4.313c-0.464,0.253-0.881,0.564-1.269,0.903C14.047,50.655,19.998,53,26.5,53  c6.454,0,12.367-2.31,16.964-6.144c-0.424-0.358-0.884-0.68-1.394-0.934l-8.467-4.233c-1.094-0.547-1.785-1.665-1.785-2.888v-3.322  c0.238-0.271,0.51-0.619,0.801-1.03c1.154-1.63,2.027-3.423,2.632-5.304c1.086-0.335,1.886-1.338,1.886-2.53v-3.546  c0-0.78-0.347-1.477-0.886-1.965v-5.126c0,0,1.053-7.977-9.75-7.977s-9.75,7.977-9.75,7.977v5.126  c-0.54,0.488-0.886,1.185-0.886,1.965v3.546c0,0.934,0.491,1.756,1.226,2.231c0.886,3.857,3.206,6.633,3.206,6.633v3.24  C20.296,39.899,19.65,40.986,18.613,41.552z"/>
+            <g>
+              <path style="fill:#556080;" d="M26.953,0.004C12.32-0.246,0.254,11.414,0.004,26.047C-0.138,34.344,3.56,41.801,9.448,46.76   c0.385-0.336,0.798-0.644,1.257-0.894l7.907-4.313c1.037-0.566,1.683-1.653,1.683-2.835v-3.24c0,0-2.321-2.776-3.206-6.633   c-0.734-0.475-1.226-1.296-1.226-2.231v-3.546c0-0.78,0.347-1.477,0.886-1.965v-5.126c0,0-1.053-7.977,9.75-7.977   s9.75,7.977,9.75,7.977v5.126c0.54,0.488,0.886,1.185,0.886,1.965v3.546c0,1.192-0.8,2.195-1.886,2.53   c-0.605,1.881-1.478,3.674-2.632,5.304c-0.291,0.411-0.563,0.759-0.801,1.03V38.8c0,1.223,0.691,2.342,1.785,2.888l8.467,4.233   c0.508,0.254,0.967,0.575,1.39,0.932c5.71-4.762,9.399-11.882,9.536-19.9C53.246,12.32,41.587,0.254,26.953,0.004z"/>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            </svg>
 
-        <div class="w-full mt-8">
-          <label for="price" class="block text-sm font-medium text-gray-700"
-            >Nama User</label
-          >
-          <div class="relative mt-1 rounded-md shadow-sm">
-            <div
-              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-            ></div>
-            <input
-            formControlName="no"
-              type="text"
-              name="price"
-              id="price"
-              class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="No."
-            />
+          <div class="w-full mt-8">
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >Nama User</label
+            >
+            <div class="relative mt-1 rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+              ></div>
+              <input
+              formControlName="nama"
+                type="text"
+                [(ngModel)]="detail.nama"
+                name="price"
+                id="price"
+                class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Nama User"
+              />
+            </div>
           </div>
-        </div>
 
-        <div class="w-full mt-4">
-          <label for="price" class="block text-sm font-medium text-gray-700"
-            >Tanggal Lahir</label
-          >
-          <div class="relative mt-1 rounded-md shadow-sm">
-            <div
-              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-            ></div>
-            <input
-            formControlName="tanggal"
-              type="date"
-              name="price"
-              id="price"
-              class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="0.00"
-            />
+          <div class="w-full mt-4">
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >Tanggal Lahir</label
+            >
+            <div class="relative mt-1 rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+              ></div>
+              <input
+              formControlName="tgl_lahir"
+                type="date"
+                name="price"
+                [(ngModel)]="detail.tgl_lahir"
+                id="price"
+                class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="0.00"
+              />
+            </div>
           </div>
-        </div>
-        <div class="w-full mt-4">
-          <label for="price" class="block text-sm font-medium text-gray-700"
-            >Email</label
-          >
-          <div class="relative mt-1 rounded-md shadow-sm">
-            <div
-              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-            ></div>
-            <input
-            formControlName="no"
-              type="text"
-              name="price"
-              id="price"
-              class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="No."
-            />
+          <div class="w-full mt-4">
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >Email</label
+            >
+            <div class="relative mt-1 rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+              ></div>
+              <input
+              formControlName="email"
+                type="email"
+                name="price"
+                [(ngModel)]="detail.email"
+                id="price"
+                class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Email"
+              />
+            </div>
           </div>
-        </div>
-        <h1 class="mt-6 text-xl font-semibold">Informasi Akun</h1>
-        <hr class="h-0.5 mt-2 mb-6 bg-gray-300"/>
-        <div class="w-full">
-          <label for="price" class="block text-sm font-medium text-gray-700"
-            >Level Akun</label
-          >
-          <div class="relative mt-1 rounded-md shadow-sm">
-            <div
-              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-            ></div>
-            <select name=""  class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="">
-              <option value="" disabled>Pilih Asal TPS</option>
-              <option value="DBM">DBM</option>
-              <option value="AMD">AMD</option>
-              <option value="AKM">AKM</option>
-            </select>
+          <h1 class="mt-6 text-xl font-semibold">Informasi Akun</h1>
+          <hr class="h-0.5 mt-2 mb-6 bg-gray-300"/>
+          <div class="w-full">
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >Level Akun</label
+            >
+            <div class="relative mt-1 rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+              ></div>
+              <select name="" (change)="levelChange($event)"  class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="">
+                <option value="" disabled>Pilih Level</option>
+                <option [selected]="level==1" value="1">Superadmin</option>
+                <option [selected]="level==2" value="2">User</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="w-full mt-4">
-          <label for="price" class="block text-sm font-medium text-gray-700"
-            >Unit</label
-          >
-          <div class="relative mt-1 rounded-md shadow-sm">
-            <div
-              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-            ></div>
-            <select name=""  class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="">
-              <option value="" disabled>Pilih Asal TPS</option>
-              <option value="DBM">DBM</option>
-              <option value="AMD">AMD</option>
-              <option value="AKM">AKM</option>
-            </select>
+          <div class="w-full mt-4">
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >Unit</label
+            >
+            <div class="relative mt-1 rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+              ></div>
+              <select name=""  (change)="unitChange($event)" class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="">
+                <option  value="" disabled>Pilih Unit</option>
+                <option [selected]="unit == 'Admin Operasional'"  value="Admin Operasional">Admin Operasional</option>
+                <option [selected]="unit == 'Acceptance'"  value="Acceptance">Acceptance</option>
+                <option [selected]="unit == 'DBM'"  value="DBM">DBM</option>
+                <option [selected]="unit == 'Checker'"  value="Checker">Checker</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="w-full mt-4">
-          <label for="price" class="block text-sm font-medium text-gray-700"
-            >Nama Akun</label
-          >
-          <div class="relative mt-1 rounded-md shadow-sm">
-            <div
-              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-            ></div>
-            <input
-            formControlName="no_polisi_kendaraan"
-              type="text"
-              name="price"
-              id="price"
-              class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Nomor Polisi Kendaraan"
-            />
+          <div class="w-full mt-4">
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >Nama Akun</label
+            >
+            <div class="relative mt-1 rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+              ></div>
+              <input
+              formControlName="nama_akun"
+                type="text"
+                [(ngModel)]="detail.nama_akun"
+                readonly
+                name="price"
+                id="price"
+                class="block w-full bg-gray-200 border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Nomor Polisi Kendaraan"
+              />
+            </div>
           </div>
-        </div>
-        <div class="w-full mt-4">
-          <label for="price" class="block text-sm font-medium text-gray-700"
-            >Password</label
-          >
-          <div class="relative mt-1 rounded-md shadow-sm">
-            <div
-              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-            ></div>
-            <input
-            formControlName="nama_pengemudi"
-              type="password"
-              name="price"
-              id="price"
-              class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Nama Pengemudi"
-            />
-          </div>
+
         </div>
 
       </div>
-
     </div>
-  </div>
   <div class="grid w-full grid-cols-2 gap-4">
 
     <div class="flex justify-start">
       <button
-      [routerLink]="['/user/list']"
+        (click)="delete()"
         type="button"
         class="flex gap-2 px-4 py-2 mr-2 text-sm font-normal text-red-500 rounded min-h-10 hover:bg-red-100"
       >

@@ -1,3 +1,4 @@
+import { HostListener } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,11 +9,22 @@ import { Router } from '@angular/router';
 })
 export class LayoutsComponent implements OnInit {
   isActive: number = 0
+  showmenu = false
+  isOpen = true
+  mobile = false
   constructor(
     private router: Router
   ) { }
-
+  @HostListener('document:click', ['$event.target'])
+  @HostListener("window:resize", [])
+  onResize() {
+    var width = window.innerWidth;
+    this.mobile = width < 992;
+  }
   ngOnInit(): void {
+    if (window.screen.width < 992) {
+      this.mobile = true;
+    }
     const url = this.router.url;
     if(url.includes('dashboard')){
       this.isActive = 0
@@ -33,6 +45,9 @@ export class LayoutsComponent implements OnInit {
       this.isActive = 5
     }
     if(url.includes('customer')){
+      this.isActive = 6
+    }
+    if(url.includes('checkers')){
       this.isActive = 6
     }
   }
@@ -59,5 +74,22 @@ export class LayoutsComponent implements OnInit {
     if(num==6){
       this.router.navigate(['/customer'])
     }
+    if(num==7){
+      this.router.navigate(['/checkers'])
+    }
   }
+
+  clickTogle(){
+    this.isOpen = !this.isOpen
+  }
+  // public onClick(target) {
+  //   const clickedInside = this.elementRef.nativeElement.contains(target);
+  //   if (!clickedInside) {
+  //     // this click event from outside
+  //   }
+  // }
+
+  // show(){
+  //   this.showmenu = !this.showmenu
+  // }
 }

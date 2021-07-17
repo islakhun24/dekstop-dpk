@@ -17,7 +17,9 @@ export class ApiService {
   project_create(formdata: any){
     return this.http.post(`${base_url}main/projek/create`,formdata)
   }
-
+  project_get(){
+    return this.http.get(`${base_url}main/projek/get`)
+  }
   project_edit(formdata: any,id: number){
     return this.http.put(`${base_url}main/projek/edit/${id}`,formdata)
   }
@@ -50,6 +52,19 @@ export class ApiService {
   smu_list(){
     return this.http.get(`${base_url}/main/smu/list`)
   }
+  smu_checker(formdata: any){
+    return this.http.post(`${base_url}main2/smu/checker`,formdata)
+  }
+  smu_list_checker(id:any){
+    return this.http.get(`${base_url}main2/smu/list_checker/${id}`)
+  }
+  smu_list_project(id:any){
+    return this.http.get(`${base_url}main2/smu/list_reject/${id}`)
+  }
+  smu_approval_reject(formdata: any){
+    return this.http.post(`${base_url}main2/smu/approval_reject`,formdata)
+  }
+
 
   smu_delete(id: number){
     return this.http.delete(`${base_url}/main/smu/delete/${id}`)
@@ -113,5 +128,17 @@ export class ApiService {
 
   user_create(formdata:any){
     return this.http.post(`${base_url}main/user/create`, formdata)
+  }
+  user_detail(id:any){
+    return this.http.get(`${base_url}main/user/detail/${id}`)
+
+  }
+
+  user_edit(id:any, formdata:any){
+    return this.http.put(`${base_url}main/user/edit/${id}`, formdata)
+  }
+  user_delete(id:any){
+    return this.http.delete(`${base_url}main/user/delete/${id}`)
+
   }
 }

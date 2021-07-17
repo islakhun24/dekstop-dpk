@@ -2,7 +2,8 @@ import { ApiService } from './../../../../services/api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+declare var $ :any
+declare var moment:any
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -10,13 +11,13 @@ import { Router } from '@angular/router';
 })
 export class CreateComponent implements OnInit {
   form:FormGroup
+  today:any
   constructor(
     private fb : FormBuilder,
     private apisService:ApiService,
     private router:Router
   ) {
     this.form = fb.group({
-      tanggal: ['', Validators.required],
       no: ['', Validators.required],
       no_polisi_kendaraan: ['', Validators.required],
       nama_pengemudi: ['', Validators.required],
@@ -27,6 +28,9 @@ export class CreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
+
   }
   isLoading : boolean = false
   save(){

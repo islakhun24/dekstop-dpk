@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class CreateComponent implements OnInit {
   form:FormGroup
-  level : any
-  unit:any
+  level : any = "Superadmin"
+  unit:any="Admin Operasional"
   constructor(
     private apiService:ApiService,
     private fb:FormBuilder,
@@ -33,6 +33,8 @@ export class CreateComponent implements OnInit {
     let formdata = this.form.value
     formdata.unit = this.unit
     formdata.level = this.level
+    console.log(formdata);
+
     this.apiService.user_create(formdata).subscribe((success:any)=>{
       Swal.fire({
         position: 'center',
