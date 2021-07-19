@@ -151,4 +151,12 @@ export class ApiService {
 
   }
 
+  cetak_invoice(data:any){
+    return this.http.post(`${base_url}main2/document/invoice/cetak`, data)
+
+  }
+  invoice_history(){
+    return this.http.get(`${base_url}main2/document/invoices/history`)
+
+  }
 }

@@ -1,3 +1,4 @@
+import { CetakComponent } from './dokumen/invoice/cetak/cetak.component';
 import { DetailComponent } from './dokumen/invoice/detail/detail.component';
 import { CheckerComponent } from './checker/checker.component';
 import { CustomerComponent } from './customer/customer.component';
@@ -17,7 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AcceptanceComponent,
-    DashboardComponent,BtbComponent, DokumenComponent, UserComponent, HargaComponent, CustomerComponent, CheckerComponent, DetailComponent
+    DashboardComponent,BtbComponent, DokumenComponent, UserComponent, HargaComponent, CustomerComponent, CheckerComponent, DetailComponent, CetakComponent
   ],
   imports: [
     CommonModule,

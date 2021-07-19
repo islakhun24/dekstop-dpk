@@ -6,6 +6,7 @@ import { AktifComponent } from './aktif/aktif.component';
 import { RiwayatComponent } from './riwayat/riwayat.component';
 import { DetailComponent } from './detail/detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CetakComponent } from './cetak/cetak.component';
 
 
 @NgModule({

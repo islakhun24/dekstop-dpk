@@ -13,6 +13,14 @@ export class InvoiceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    const url = this.router.url;
+    if(url.includes('/dokumen/invoice/aktif')){
+      this.isClick =true
+    }
+    if(url.includes('/dokumen/invoice/riwayat')){
+
+      this.isClick = false
+    }
   }
   click(is: boolean){
     this.isClick = is

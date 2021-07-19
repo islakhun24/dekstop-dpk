@@ -2,6 +2,7 @@ import { ApiService } from '../../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detail',
@@ -19,6 +20,7 @@ export class DetailComponent implements OnInit {
   data:any=[]
   smu:any = []
   isi_kiriman : any = []
+  no_invoice: any
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -30,7 +32,7 @@ export class DetailComponent implements OnInit {
       no_hp:[''],
       isi_kiriman:['']
     })
-
+    this.no_invoice = activateROute.snapshot.paramMap.get('no_invoice')
     this.customer = activateROute.snapshot.paramMap.get('agen')
     apiService.invoice_detail(this.customer).subscribe(async (data: any)=>{
 
@@ -54,6 +56,41 @@ export class DetailComponent implements OnInit {
   ngOnInit(): void {
   }
   save(){
+    let data :any = {}
+    data.detail = this.detail
+    data.invoice = this.invoice
+    data.smu = this.smu
+    Swal.fire({
+      title: 'Apakah anda yakin?',
+      text: "Anda yakin ingin invoice "+ this.customer + ' !',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Setuju!',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.apiService.cetak_invoice({data:data, no_invoice: this.no_invoice}).subscribe(data=>{
+          console.log(data);
+          Swal.fire(
+            'Berhasil!',
+            'invoice '+this.customer+' diriwayatkan',
+            'success'
+          ).then(()=>{
+            this.router.navigate(['/dokumen/invoice/riwayat'])
+          })
+        }, (err:any)=>{
+          Swal.fire(
+            'Gagal!',
+            'invoice '+this.customer+' gagal riwayatkan',
+            'error'
+          )
+        })
+
+      }
+    })
+
 
   }
 }

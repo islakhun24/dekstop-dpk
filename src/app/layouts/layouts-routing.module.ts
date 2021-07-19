@@ -1,3 +1,4 @@
+import { CetakComponent } from './dokumen/invoice/cetak/cetak.component';
 import { DetailComponent } from './dokumen/invoice/detail/detail.component';
 import { CheckerComponent } from './checker/checker.component';
 import { CustomerComponent } from './customer/customer.component';
@@ -17,8 +18,12 @@ const routes: Routes = [
     pathMatch:'full'
   },
   {
-    path:'dokumen/invoice/detail/:agen',
+    path:'dokumen/invoice/detail/:agen/:no_invoice',
     component: DetailComponent
+  },
+  {
+    path:'dokumen/invoice/cetak/:agen/:no_invoice',
+    component: CetakComponent
   },
   {
     path: 'dashboard',
