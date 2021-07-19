@@ -15,6 +15,8 @@ import { HargaModule } from './layouts/harga/harga.module';
 import { DokumenModule } from './layouts/dokumen/dokumen.module';
 import { CustomerModule } from './layouts/customer/customer.module';
 import { CheckerModule } from './layouts/checker/checker.module';
+// import { CsdModule } from './layouts/dokumen/csd/csd.module';
+import { InvoiceModule } from './layouts/dokumen/invoice/invoice.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { CheckerModule } from './layouts/checker/checker.module';
     DokumenModule,
     CustomerModule,
     CheckerModule,
+    // CsdModule,
+    InvoiceModule,
   ],
   providers: [
     {

@@ -1,0 +1,7 @@
+.aktif{
+  @apply px-8 py-1 text-sm text-white bg-blue-500 rounded-lg
+}
+
+.non-aktif{
+  @apply px-8 py-1 text-sm bg-white border border-blue-500 rounded-lg text-blue-500
+}

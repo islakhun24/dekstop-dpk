@@ -76,7 +76,7 @@ export class ApiService {
 
   //CSD:
   csd_create(formdata: any){
-    return this.http.post(`${base_url}/main/csd/create`,formdata)
+    return this.http.post(`${base_url}main2/csd/create`,formdata)
   }
   csd_get(){
     return this.http.get(`${base_url}/main/csd/get`)
@@ -141,4 +141,14 @@ export class ApiService {
     return this.http.delete(`${base_url}main/user/delete/${id}`)
 
   }
+
+  invoice_list(){
+    return this.http.get(`${base_url}main2/document/invoice`)
+
+  }
+  invoice_detail(agen: any){
+    return this.http.get(`${base_url}main2/document/invoice/${agen}`)
+
+  }
+
 }

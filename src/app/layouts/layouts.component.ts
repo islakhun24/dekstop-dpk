@@ -48,7 +48,7 @@ export class LayoutsComponent implements OnInit {
       this.isActive = 6
     }
     if(url.includes('checkers')){
-      this.isActive = 6
+      this.isActive = 7
     }
   }
   click(num:number){
@@ -63,7 +63,7 @@ export class LayoutsComponent implements OnInit {
       this.router.navigate(['/btb'])
     }
     if(num==3){
-      this.router.navigate(['/dokumen'])
+      this.router.navigate(['/dokumen/list'])
     }
     if(num==4){
       this.router.navigate(['/user'])

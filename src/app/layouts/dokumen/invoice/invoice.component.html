@@ -1,0 +1,8 @@
+<div class="px-6">
+  <h1 class="text-2xl">Invoice</h1>
+  <div class="flex gap-2 mt-2">
+    <button (click)="click(true)"  [class]="isClick === true ? 'aktif' : 'non-aktif'">Aktif</button>
+    <button (click)="click(false)" [class]="isClick === false ? 'aktif' : 'non-aktif'">Riwayat</button>
+  </div>
+  <router-outlet></router-outlet>
+</div>

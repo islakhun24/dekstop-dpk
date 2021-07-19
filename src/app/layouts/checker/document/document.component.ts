@@ -1,3 +1,4 @@
+import  Swal  from 'sweetalert2';
 import { ApiService } from './../../../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -19,8 +20,10 @@ export class DocumentComponent implements OnInit {
   total_berat : any = {}
    uniq:any = {}
    barangUniq:any = {}
+   agenUniq:any={}
    data_smu : any = []
   isi_kiriman : any
+  nama_agen:any
   constructor(
     private activateRoute:ActivatedRoute,
     private router: Router,
@@ -37,6 +40,7 @@ export class DocumentComponent implements OnInit {
       nama_pesawat:[''],
       nomor_polisi_kendaraan:[''],
       nama_pengemudi:[''],
+      nama_agen:[''],
       pengecualian_pemeriksaan:[''],
       status_keamanan_diterbitkan_oleh:['']
     })
@@ -54,10 +58,15 @@ export class DocumentComponent implements OnInit {
       this.total_berat = this.data_smu.map((o:any) => o.berat_total).reduce((a:any, c:any) => { return a + c });
       this.data = this.data_smu.filter((obj:any) => !this.uniq[obj.smu] && (this.uniq[obj.smu] = true));
       let newData = this.data_smu.filter((obj:any) => !this.barangUniq[obj.nama_barang] && (this.barangUniq[obj.nama_barang] = true));
+      let dataAgen = this.data_smu.filter((obj:any) => !this.agenUniq[obj.nama_agen] && (this.agenUniq[obj.nama_agen] = true));
       let str = ''
       this.isi_kiriman = newData.map((val: any)=>{
 
         return  val.nama_barang
+      })
+      this.nama_agen = dataAgen.map((val: any)=>{
+
+        return  val.nama_agen
       })
     }
 
@@ -74,17 +83,36 @@ export class DocumentComponent implements OnInit {
     // console.log(this.activateRoute.snapshot.queryParams['data']);
 
   }
+  isLoading : boolean = false
   save(){
+    this.isLoading = true
     let formdata = this.form.value
     formdata.qty = this.qty
     formdata.total_berat = this.total_berat
     formdata.smu = this.data_smu
     formdata.project_id = this.id
     formdata.transit = this.transit
+    formdata.nama_agen = this.nama_agen
     formdata.metode_pemeriksaan = this.metode_pemeriksaan
     formdata.status_keamanan = this.status_keamanan
     formdata.asal_tps = this.asal_tps(this.detail.asal_tps)
-    console.log(formdata);
+    this.apiService.csd_create(formdata).subscribe(data=>{
+
+    this.isLoading = false
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(()=>{
+        this.router.navigate(['/checkers/list'])
+      })
+    },err=>{
+      this.isLoading = false
+      console.log(err);
+
+    })
 
   }
 

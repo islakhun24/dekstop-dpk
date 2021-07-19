@@ -1,3 +1,4 @@
+import { DetailComponent } from './dokumen/invoice/detail/detail.component';
 import { CheckerComponent } from './checker/checker.component';
 import { CustomerComponent } from './customer/customer.component';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,10 @@ const routes: Routes = [
     path: '',
     redirectTo:'dashboard',
     pathMatch:'full'
+  },
+  {
+    path:'dokumen/invoice/detail/:agen',
+    component: DetailComponent
   },
   {
     path: 'dashboard',

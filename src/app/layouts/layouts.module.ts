@@ -1,3 +1,4 @@
+import { DetailComponent } from './dokumen/invoice/detail/detail.component';
 import { CheckerComponent } from './checker/checker.component';
 import { CustomerComponent } from './customer/customer.component';
 import { NgModule } from '@angular/core';
@@ -10,16 +11,19 @@ import { BtbComponent } from './btb/btb.component';
 import { DokumenComponent } from './dokumen/dokumen.component';
 import { UserComponent } from './user/user.component';
 import { HargaComponent } from './harga/harga.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     AcceptanceComponent,
-    DashboardComponent,BtbComponent, DokumenComponent, UserComponent, HargaComponent, CustomerComponent, CheckerComponent
+    DashboardComponent,BtbComponent, DokumenComponent, UserComponent, HargaComponent, CustomerComponent, CheckerComponent, DetailComponent
   ],
   imports: [
     CommonModule,
-    LayoutsRoutingModule
+    LayoutsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class LayoutsModule { }
