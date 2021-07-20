@@ -52,6 +52,9 @@ export class ApiService {
   smu_list(){
     return this.http.get(`${base_url}/main/smu/list`)
   }
+  smu_list2(id: any){
+    return this.http.get(`${base_url}main2/smu/list/${id}`);
+  }
   smu_checker(formdata: any){
     return this.http.post(`${base_url}main2/smu/checker`,formdata)
   }
@@ -158,5 +161,25 @@ export class ApiService {
   invoice_history(){
     return this.http.get(`${base_url}main2/document/invoices/history`)
 
+  }
+
+  csd_past_check_list(){
+    return this.http.get(`${base_url}main2/document/csd/past_check_list`)
+  }
+  csd_detailt(id: any){
+    return this.http.get(`${base_url}main2/document/csd/detail/${id}`)
+  }
+  smu_create2(formdata: any){
+    return this.http.post(`${base_url}main2/smu/create`,formdata)
+  }
+
+  suggest_smu(formdata: any){
+    return this.http.post(`${base_url}main2/suggestion/smu`,formdata)
+  }
+  suggest_customer(formdata: any){
+    return this.http.post(`${base_url}main2/suggestion/customer`,formdata)
+  }
+  suggest_barang(formdata: any){
+    return this.http.post(`${base_url}main2/suggestion/barang`,formdata)
   }
 }

@@ -12,3 +12,27 @@
 }
 
 
+.logout-active {
+  @apply absolute block top-16 right-2
+}
+
+
+.logout-noactive {
+  @apply hidden absolute block top-16 right-2
+}
+.notif-active {
+  @apply absolute block top-16 right-20
+}
+
+
+.notif-noactive {
+  @apply hidden absolute block top-16 right-20
+}
+
+.out-noactive{
+  @apply absolute hidden top-0 left-0 right-0  min-w-full min-h-full
+}
+
+.out-active{
+  @apply absolute top-0 left-0 right-0  min-w-full min-h-full
+}

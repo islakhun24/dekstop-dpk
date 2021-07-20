@@ -5,10 +5,10 @@
         No.
       </th>
       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-        Tanggal
+        Status
       </th>
       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-        Agen
+        Kendaraan
       </th>
 
       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
@@ -18,7 +18,10 @@
         Berat (KG)
       </th>
       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-         Biaya(Rp)
+        From Location
+      </th>
+      <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+        To
       </th>
       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
         Detail
@@ -29,13 +32,13 @@
     <tr *ngFor="let item of data; index as i">
 
       <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-        {{item.no_invoice}}
+        {{i+1}}
       </td>
       <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-        {{tanggal(item.tanggal)}}
+        {{item.status}}
       </td>
       <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-        {{item.customer}}
+        {{item.kendaraan}}
       </td>
       <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
         {{item.koli}}
@@ -44,10 +47,13 @@
         {{item.berat}}
       </td>
       <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-        {{item.biaya}}
+        {{item.kota_asal}}
       </td>
       <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-        <button [routerLink]="['/dokumen/invoice/detail', item.customer, item.no_invoice]"   class="text-lg font-bold text-blue-500 text-md">
+        {{item.kota_tujuan}}
+      </td>
+      <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+        <button [routerLink]="['/dokumen/csd/detail', item.id]"   class="text-lg font-bold text-blue-500 text-md">
           <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" class="fill-current" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"  viewBox="0 0 612.02 612.02" style="enable-background:new 0 0 612.02 612.02;" xml:space="preserve">
             <g>
               <g id="_x35__11_">

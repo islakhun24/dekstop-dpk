@@ -64,6 +64,16 @@ const routes: Routes = [
     path: 'checkers',
     component: CheckerComponent,
     loadChildren: () => import('./checker/checker.module').then(m => m.CheckerModule)
+  },
+  {
+    path: 'admin-operasional',
+    component: CheckerComponent,
+    loadChildren: () => import('./checker/checker.module').then(m => m.CheckerModule)
+  },
+  {
+    path: 'team',
+    component: CheckerComponent,
+    loadChildren: () => import('./checker/checker.module').then(m => m.CheckerModule)
   }
 ];
 

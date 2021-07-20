@@ -1,3 +1,4 @@
+import { ScanComponent } from './scan/scan.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './list/list.component';
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'list',
     component: ListComponent
+  },
+  {
+    path: 'scan/:id',
+    component: ScanComponent
   },
   {
     path: 'manage',

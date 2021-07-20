@@ -1,3 +1,5 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CsdComponent } from './csd/csd.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { CsdModule } from './csd/csd.module';
 import { InvoiceModule } from './invoice/invoice.module';
@@ -11,12 +13,15 @@ import { ListComponent } from './list/list.component';
 @NgModule({
   declarations: [
     ListComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    CsdComponent
   ],
   imports: [
     CommonModule,
     InvoiceModule,
     CsdModule,
+    ReactiveFormsModule,
+    FormsModule,
     DokumenRoutingModule
   ]
 })

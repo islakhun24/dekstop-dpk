@@ -22,4 +22,9 @@ export class AktifComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  tanggal(str:any){
+    const dates = str.split(' ')
+
+    return dates[0]
+  }
 }

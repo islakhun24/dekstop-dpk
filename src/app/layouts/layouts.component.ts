@@ -1,4 +1,4 @@
-import { HostListener } from '@angular/core';
+import { HostListener , ElementRef} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -12,11 +12,21 @@ export class LayoutsComponent implements OnInit {
   showmenu = false
   isOpen = true
   mobile = false
+  logout: any = false
+  notif: any = false
+  out = false
   constructor(
+    private eRef: ElementRef,
     private router: Router
-  ) { }
-  @HostListener('document:click', ['$event.target'])
-  @HostListener("window:resize", [])
+  ) {
+    router.events.subscribe((val:any) => this.out = false)
+   }
+   @HostListener('document:click', ['$event']) onDocumentClick($event:any) {
+    this.logout = false;
+    this.notif = false;
+  }
+
+    @HostListener("window:resize", [])
   onResize() {
     var width = window.innerWidth;
     this.mobile = width < 992;
@@ -50,8 +60,15 @@ export class LayoutsComponent implements OnInit {
     if(url.includes('checkers')){
       this.isActive = 7
     }
+    if(url.includes('admin-operasional')){
+      this.isActive = 8
+    }
+    if(url.includes('team')){
+      this.isActive = 9
+    }
   }
   click(num:number){
+
     this.isActive = num
     if(num==0){
       this.router.navigate(['/dashboard'])
@@ -63,7 +80,7 @@ export class LayoutsComponent implements OnInit {
       this.router.navigate(['/btb'])
     }
     if(num==3){
-      this.router.navigate(['/dokumen/list'])
+      this.router.navigate(['/dokumen/index'])
     }
     if(num==4){
       this.router.navigate(['/user'])
@@ -77,11 +94,30 @@ export class LayoutsComponent implements OnInit {
     if(num==7){
       this.router.navigate(['/checkers'])
     }
+    if(num==8){
+      this.router.navigate(['/admin-operasional'])
+    }
+    if(num==9){
+      this.router.navigate(['/team'])
+    }
   }
-
+  clickLogout(e: Event){
+    e.preventDefault();
+    e.stopPropagation();
+    this.logout = !this.logout
+    this.notif = false
+  }
   clickTogle(){
     this.isOpen = !this.isOpen
+    this.out = true
   }
+  clickNotif(e: Event){
+    e.preventDefault();
+    e.stopPropagation();
+    this.notif = !this.notif
+    this.logout = false
+  }
+
   // public onClick(target) {
   //   const clickedInside = this.elementRef.nativeElement.contains(target);
   //   if (!clickedInside) {
@@ -92,4 +128,6 @@ export class LayoutsComponent implements OnInit {
   // show(){
   //   this.showmenu = !this.showmenu
   // }
+
+
 }
