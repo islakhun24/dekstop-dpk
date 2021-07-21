@@ -1,6 +1,6 @@
 <div class="flex flex-row min-h-screen text-gray-800 bg-gray-100 ">
   <aside
-    class="sticky top-0 z-50 w-64 h-screen transition-transform duration-150 ease-in transform -translate-x-full bg-white  sidebar md:shadow md:translate-x-0"
+    class="sticky top-0 z-50 w-64 h-screen transition-transform duration-150 ease-in transform -translate-x-full bg-white sidebar md:shadow md:translate-x-0"
   >
     <div class="flex items-center justify-center py-4 sidebar-header">
       <div class="inline-flex">
@@ -166,7 +166,7 @@
             <span class="ml-3">Dokumen</span>
           </a>
         </li>
-        <li class="my-px">
+        <li class="hidden my-px">
           <a
             [routerLink]="['./']"
             (click)="click(8)"
@@ -245,7 +245,7 @@
             <span class="ml-3">User</span>
           </a>
         </li>
-        <li class="my-px">
+        <li class="hidden my-px">
           <a
             [routerLink]="['./']"
             (click)="click(9)"
