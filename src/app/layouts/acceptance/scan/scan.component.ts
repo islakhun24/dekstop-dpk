@@ -1,8 +1,9 @@
 import { ApiService } from './../../../services/api.service';
 import { AfterViewInit, Component,ViewChild } from '@angular/core';
 import { BarcodeScannerLivestreamComponent } from 'ngx-barcode-scanner';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class ScanComponent implements AfterViewInit {
   constructor(
     private apiService: ApiService,
     private activatedRouter: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router:Router
   ){
     this.id = activatedRouter.snapshot.paramMap.get('id');
 
@@ -128,5 +130,40 @@ export class ScanComponent implements AfterViewInit {
   barangSelect(data:any){
     this.barang = data
     this.barangs = []
+  }
+
+  selesai(){
+    Swal.fire({
+      title: 'Apakah anda yakin?',
+      text: "Projek ini telah selesai !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya',
+      confirmButtonAriaLabel: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.apiService.acceptance_selesai(this.id).subscribe(data=>{
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Projek seleseai di acceptance',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(()=>{
+            this.router.navigate(['/acceptance/list'])
+          })
+        },err=>{
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Gagal',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
+      }
+    })
   }
 }

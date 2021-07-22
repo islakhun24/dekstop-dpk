@@ -40,7 +40,7 @@
 
             </div>
            <div
-           [routerLink]="['/acceptance/scan',project!.id]"
+           [routerLink]="['/admin-operasional/project/smu',project!.id]"
             class="flex-shrink cursor-pointer">
               <span class="inline-flex items-center justify-center w-10 h-10 text-center text-white bg-white rounded-full shadow-lg">
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#3B82F6"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
@@ -57,10 +57,7 @@
       <p>Belum ada tugas, klik buat tugas untuk memulai tugas baru</p>
 
       <div class="flex items-start justify-center">
-        <button type="button" [routerLink]="['/acceptance/manage/create']" class="flex flex-row items-center justify-center h-10 px-4 py-2 mx-8 mt-16 font-light text-black bg-blue-500 rounded hover:bg-blue-600">
 
-          <svg xmlns="http://www.w3.org/2000/svg" class="text-white fill-current" height="16" viewBox="0 0 448 448" width="16"><path d="m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0"/></svg>
-           <span class="ml-2 text-sm font-medium text-white font-base">Tambah Tugas</span></button>
       </div>
     </div>
   </div>

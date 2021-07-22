@@ -13,7 +13,8 @@ export class ListComponent implements OnInit {
   constructor(
     private apiService:ApiService
   ) {
-    this.apiService.project_get().subscribe((data:any)=>{
+    this.apiService.acceptance_get().subscribe((data:any)=>{
+      console.log(data);
 
       this.project = data.data
       this.isList = false

@@ -1,7 +1,7 @@
-<table class="min-w-full mt-4 divide-y divide-gray-200">
+<table class="w-full mt-4 overflow-x-scroll divide-y divide-gray-200">
   <thead class="bg-gray-50">
     <tr >
-      <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+      <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase lg:hidden">
         No.
       </th>
       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
@@ -31,7 +31,7 @@
   <tbody class="bg-white divide-y divide-gray-200">
     <tr *ngFor="let item of data; index as i">
 
-      <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+      <td class="px-6 py-4 text-sm text-gray-500 lg:hidden whitespace-nowrap">
         {{i+1}}
       </td>
       <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">

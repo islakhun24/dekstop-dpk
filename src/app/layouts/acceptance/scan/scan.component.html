@@ -16,10 +16,17 @@
        </div>
      </div>
      <div class="flex justify-end">
-       <button  type="button" (click)="toggleModal()" class="flex items-center justify-center h-10 px-4 py-2 mt-10 font-light text-white bg-blue-500 rounded hover:bg-blue-700">
+    <div class="flex space-x-2">
+      <button  type="button" (click)="selesai()" class="flex items-center justify-center h-10 px-4 py-2 mt-10 font-light text-white bg-green-500 rounded hover:green-red-700">
 
-         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white fill-current" height="448pt" viewBox="0 0 448 448" width="448pt"><path d="m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0"/></svg>  <span class="ml-2 text-base font-medium">Tambah SMU</span></button>
-     </div>
+        <span class="ml-2 text-base font-medium">Selesai</span></button>
+
+      <button  type="button" (click)="toggleModal()" class="flex items-center justify-center h-10 px-4 py-2 mt-10 font-light text-white bg-blue-500 rounded hover:bg-blue-700">
+
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white fill-current" height="448pt" viewBox="0 0 448 448" width="448pt"><path d="m408 184h-136c-4.417969 0-8-3.582031-8-8v-136c0-22.089844-17.910156-40-40-40s-40 17.910156-40 40v136c0 4.417969-3.582031 8-8 8h-136c-22.089844 0-40 17.910156-40 40s17.910156 40 40 40h136c4.417969 0 8 3.582031 8 8v136c0 22.089844 17.910156 40 40 40s40-17.910156 40-40v-136c0-4.417969 3.582031-8 8-8h136c22.089844 0 40-17.910156 40-40s-17.910156-40-40-40zm0 0"/></svg>  <span class="ml-2 text-base font-medium">Tambah SMU</span></button>
+
+    </div>
+    </div>
    </div>
    <div class="flex gap-4 p-6">
    <div class="w-2/6 ">
@@ -38,7 +45,6 @@
    <div class="flex gap-4 -mt-6">
      <div class="flex w-2/6 p-8 bg-white flex-nowrap">
      <barcode-scanner-livestream
-     style="height: 40px;"
        type="code_128"
        (valueChanges)="onValueChanges($event)"
        (started)="(onStarted)"

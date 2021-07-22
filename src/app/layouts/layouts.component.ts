@@ -1,3 +1,4 @@
+import { TokenStorageService } from './../services/token-storage.service';
 import { HostListener , ElementRef} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -15,9 +16,11 @@ export class LayoutsComponent implements OnInit {
   logout: any = false
   notif: any = false
   out = false
+  user:any = {}
   constructor(
     private eRef: ElementRef,
-    private router: Router
+    private router: Router,
+    private tokenStorage: TokenStorageService
   ) {
     router.events.subscribe((val:any) => this.out = false)
    }
@@ -31,7 +34,10 @@ export class LayoutsComponent implements OnInit {
     var width = window.innerWidth;
     this.mobile = width < 992;
   }
+
   ngOnInit(): void {
+    this.user = this.tokenStorage.getUser()
+    // console.log(this.user);
     if (window.screen.width < 992) {
       this.mobile = true;
     }
@@ -118,6 +124,13 @@ export class LayoutsComponent implements OnInit {
     this.logout = false
   }
 
+  logouts(){
+    // alert('asda')
+
+      this.router.navigate(['/login']).then(()=>{
+        this.tokenStorage.signOut()
+      })
+  }
   // public onClick(target) {
   //   const clickedInside = this.elementRef.nativeElement.contains(target);
   //   if (!clickedInside) {

@@ -1,6 +1,6 @@
 import  Swal  from 'sweetalert2';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -19,15 +19,14 @@ export class CheckerComponent implements OnInit {
   constructor(
     private apiService:ApiService,
     private activateRoute:ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router:Router
   ) {
     this.form = fb.group({
       berat: ['']
     })
     this.id = activateRoute.snapshot.paramMap.get('id')
     apiService.smu_list_checker(this.id).subscribe((data:any)=>{
-      console.log(data);
-
       this.data = data
       this.detail = data[0]
     })
@@ -71,8 +70,47 @@ export class CheckerComponent implements OnInit {
     fomdata.project_id = this.id
 
     this.apiService.smu_checker(fomdata).subscribe((data:any)=>{
+      this.form.reset()
       this.data = data
       this.detail = data[0]
     })
+  }
+
+
+  selesai(){
+    Swal.fire({
+      title: 'Apakah selesai?',
+      text: "Apakah Proses BTB anda telah selesai!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Selesai'
+    }).then((result:any) => {
+      if (result.isConfirmed) {
+        this.apiService.btb_selesai(this.id).subscribe(data=>{
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Berhasil',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(data=>{
+              this.router.navigate(['/btb/list'])
+          })
+
+        }, err=>{
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Gagal',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
+
+      }
+    })
+
   }
 }

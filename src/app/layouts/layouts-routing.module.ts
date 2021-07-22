@@ -1,3 +1,4 @@
+import { AdminOperasionalComponent } from './admin-operasional/admin-operasional.component';
 import { CetakComponent } from './dokumen/invoice/cetak/cetak.component';
 import { DetailComponent } from './dokumen/invoice/detail/detail.component';
 import { CheckerComponent } from './checker/checker.component';
@@ -67,8 +68,8 @@ const routes: Routes = [
   },
   {
     path: 'admin-operasional',
-    component: CheckerComponent,
-    loadChildren: () => import('./checker/checker.module').then(m => m.CheckerModule)
+    component: AdminOperasionalComponent,
+    loadChildren: () => import('./admin-operasional/admin-operasional.module').then(m => m.AdminOperasionalModule)
   },
   {
     path: 'team',

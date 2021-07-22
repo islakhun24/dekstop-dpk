@@ -2,25 +2,25 @@
   <div>
     <h1 class="flex mt-8 ">
 
-     <span class="text-4xl font-bold text-blue-500 "> Reject</span>
-
+     <span class="ml-4 text-4xl font-bold text-blue-500"> BP 1155 CD</span>
+     <span class="ml-6 font-light">
+       <p class="text-sm">Pengemudi</p>
+       <p class="font-bold ">Surwono</p>
+     </span>
     </h1>
     <div class="mt-1 font-light">
 
     </div>
   </div>
   <div class="flex justify-end space-x-2">
-    <button type="button" (click)="selesai()"  class="flex h-10 px-4 py-2 mt-10 font-light text-black bg-red-500 rounded hover:bg-red-600">
-     <span class="text-base font-medium text-white">Kembali</span></button>
-
+    <button type="button" (click)="accept()"  class="flex h-10 px-4 py-2 mt-10 font-light text-black bg-green-500 rounded hover:bg-green-400">
+     <span class="text-base font-medium text-white">Selesai</span></button>
 
     </div>
 </div>
-<div class="grid grid-cols-5 gap-4 p-6 mt-8">
-<div class="col-span-2">
+<div class="grid gap-4 pb-8">
 
-</div>
-<div class="flex col-span-3 -mt-8">
+<div class="flex mt-8">
 
   <span>
     Daftar barang | Total
@@ -31,43 +31,9 @@
 </div>
 </div>
 <div class="grid grid-cols-5 gap-4 -mt-6">
-  <form class="col-span-2" [formGroup]="form" (ngSubmit)="save()" >
-    <div class="p-8 bg-white rounded shadow-lg ">
-      <div class="w-full p-4 bg-blue-200 rounded">
-        <h1 class="font-medium">{{detail.smu}}</h1>
-        <p class="font-light">{{detail.koli}}</p>
-      </div>
-      <div class="grid grid-cols-2">
-        <div class="mt-8">
-          <p class="text-base font-light">Berat awal</p>
-          <h1 class="mt-2 font-medium text-black"><span class="text-2xl ">{{berat_awal}} kg</span></h1>
-        </div>
-        <div class="mt-8">
-          <p class="text-base font-light ">(-) Reject </p>
-          <div class="flex">
-            <div class="">
-              <input (keyup)="keyup($event)" formControlName="berat" type="number" name="" class="w-20 text-2xl border-0 ring-0 hover:border-0 focus:ring-0" placeholder="0" id="">
-              <p *ngIf="errs"  class="text-xs font-thin text-red-500">*Tidak boleh lebih besar dari berat total</p>
-            </div>
-          <h1 class="mt-2 font-medium text-black"><span class="text-2xl ">kg</span> </h1>
 
-          </div>
-        </div>
-      </div>
-      <div class="mt-8">
-        <p class="text-base font-light">Berat</p>
-        <h1 class="font-bold text-blue-500"><span class="text-6xl ">{{berat_total}}</span> <span class="text-2xl">kg</span></h1>
-      </div>
-
-
-      <div class="flex justify-start mt-16">
-        <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
-          Simpan</button>
-      </div>
-    </div>
-  </form>
   <!-- ... -->
-  <div class="col-span-3 p-8 bg-white rounded shadow-lg">
+  <div class="col-span-5 p-8 bg-white rounded shadow-lg">
     <table class="min-w-full leading-normal">
       <thead>
           <tr>

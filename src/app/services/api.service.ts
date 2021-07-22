@@ -20,6 +20,34 @@ export class ApiService {
   project_get(){
     return this.http.get(`${base_url}main/projek/get`)
   }
+  checker_get(){
+    return this.http.get(`${base_url}main2/checker/get`)
+  }
+  acceptance_get(){
+    return this.http.get(`${base_url}main2/projek/acceptance`)
+  }
+
+  acceptance_selesai(id:any){
+    return this.http.get(`${base_url}main2/projek/acceptance/selesai/${id}`)
+  }
+  btb_get(){
+    return this.http.get(`${base_url}main2/projek/btb`)
+  }
+  btb_selesai(id:any){
+    return this.http.get(`${base_url}main2/projek/btb/selesai/${id}`)
+  }
+  btb_reject(id:any){
+    return this.http.get(`${base_url}main2/projek/btb/reject/${id}`)
+  }
+  admin_get(){
+    return this.http.get(`${base_url}main2/projek/admin`)
+  }
+  admin_smu(id:any){
+    return this.http.get(`${base_url}main2/projek/admin/smu/${id}`)
+  }
+  admin_selesai(formdata:any, id:any){
+    return this.http.put(`${base_url}main2/projek/admin/smu/${id}`,formdata)
+  }
   project_edit(formdata: any,id: number){
     return this.http.put(`${base_url}main/projek/edit/${id}`,formdata)
   }
@@ -181,5 +209,9 @@ export class ApiService {
   }
   suggest_barang(formdata: any){
     return this.http.post(`${base_url}main2/suggestion/barang`,formdata)
+  }
+
+  invoice_print(agen:any, noinvoice:any){
+    return this.http.put(`${base_url}main2/invoice/detail/${agen}`,{noinvoice: noinvoice})
   }
 }

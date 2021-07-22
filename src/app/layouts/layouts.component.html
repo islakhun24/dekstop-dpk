@@ -1,6 +1,6 @@
 <div class="flex flex-row min-h-screen text-gray-800 bg-gray-100 ">
   <aside
-    class="sticky top-0 z-50 w-64 h-screen transition-transform duration-150 ease-in transform -translate-x-full bg-white sidebar md:shadow md:translate-x-0"
+    class="sticky top-0 z-50 flex-row flex-none w-64 h-screen transition-transform duration-150 ease-in transform -translate-x-full bg-white sidebar md:shadow md:translate-x-0"
   >
     <div class="flex items-center justify-center py-4 sidebar-header">
       <div class="inline-flex">
@@ -28,7 +28,7 @@
         <!-- <li class="my-px">
           <span class="flex px-4 my-4 text-sm font-medium text-gray-700 uppercase">Projects</span>
         </li> -->
-        <li class="my-px">
+        <li *ngIf="user.unit == 'Acceptance' || user.wewenang=='Acceptance'"  class="my-px">
           <a
             [routerLink]="['./']"
             (click)="click(1)"
@@ -40,7 +40,7 @@
             <span class="ml-3">Acceptance</span>
           </a>
         </li>
-        <li class="my-px">
+        <li *ngIf="user.unit == 'BTB' || user.wewenang=='BTB'" class="my-px">
           <a
             [routerLink]="['./']"
             (click)="click(2)"
@@ -93,7 +93,7 @@
             <span class="ml-3">BTB</span>
           </a>
         </li>
-        <li class="my-px">
+        <li *ngIf="user.level == '1'" class="my-px">
           <a
             [routerLink]="['./']"
             (click)="click(3)"
@@ -166,7 +166,7 @@
             <span class="ml-3">Dokumen</span>
           </a>
         </li>
-        <li class="hidden my-px">
+        <li *ngIf="user.unit == 'Admin Operasional' || user.wewenang=='Admin Operasional'" class="my-px ">
           <a
             [routerLink]="['./']"
             (click)="click(8)"
@@ -221,7 +221,7 @@
             <span class="ml-3">Admin Operasional</span>
           </a>
         </li>
-        <li class="my-px">
+        <li *ngIf="user.unit == 'Checker' || user.wewenang=='Checker'" class="my-px">
           <a
             [routerLink]="['./']"
             (click)="click(7)"
@@ -233,7 +233,7 @@
             <span class="ml-3">Checker</span>
           </a>
         </li>
-        <li class="my-px">
+        <li *ngIf="user.level == '1'" class="my-px">
           <a
             [routerLink]="['./']"
             (click)="click(4)"
@@ -245,7 +245,7 @@
             <span class="ml-3">User</span>
           </a>
         </li>
-        <li class="hidden my-px">
+        <li *ngIf="user.level == '1'" class="hidden my-px">
           <a
             [routerLink]="['./']"
             (click)="click(9)"
@@ -317,7 +317,7 @@
             <span class="ml-3">Team</span>
           </a>
         </li>
-        <li class="my-px">
+        <li *ngIf="user.level == '1'" class="my-px">
           <a
             [routerLink]="['./']"
             (click)="click(5)"
@@ -329,7 +329,7 @@
             <span class="ml-3">Harga</span>
           </a>
         </li>
-        <li class="my-px">
+        <li *ngIf="user.level == '1'" class="my-px">
           <a
             [routerLink]="['./']"
             (click)="click(6)"
@@ -353,26 +353,10 @@
             <div
               class="absolute top-0 left-0 inline-flex items-center justify-center w-10 h-full text-gray-400"
             >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+
             </div>
 
-            <input
-              id="search"
-              type="text"
-              name="search"
-              class="w-full h-10 pl-10 pr-4 text-sm placeholder-gray-500 border border-gray-300 rounded-lg sm:text-base focus:outline-none focus:border-indigo-400"
-              placeholder="Search..."
-            />
+
           </div>
           <div class="flex md:hidden">
             <a href="#" class="flex items-center justify-center w-10 h-10 border-transparent">
@@ -391,7 +375,7 @@
           </div>
         </form>
         <div class="flex items-center ml-auto space-x-4">
-          <div   (click)="clickNotif($event)" id="notif" class="text-gray-400 cursor-pointer">
+          <div   (click)="clickNotif($event)" id="notif" class="hidden text-gray-400 cursor-pointer">
             <svg class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="512px" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve"><g><path d="M381.7,225.9c0-97.6-52.5-130.8-101.6-138.2c0-0.5,0.1-1,0.1-1.6c0-12.3-10.9-22.1-24.2-22.1c-13.3,0-23.8,9.8-23.8,22.1   c0,0.6,0,1.1,0.1,1.6c-49.2,7.5-102,40.8-102,138.4c0,113.8-28.3,126-66.3,158h384C410.2,352,381.7,339.7,381.7,225.9z"/><path d="M256.2,448c26.8,0,48.8-19.9,51.7-43H204.5C207.3,428.1,229.4,448,256.2,448z"/></g></svg>
           </div>
           <div class="flex ml-auto cursor-pointer">
@@ -402,8 +386,8 @@
                 class="w-10 h-10 bg-gray-200 border rounded-full"
               />
               <span class="flex flex-col ml-2">
-                <span class="w-20 font-semibold leading-none tracking-wide truncate">John Doe</span>
-                <span class="w-20 mt-1 text-xs leading-none text-gray-500 truncate">Manager</span>
+                <span class="w-20 font-semibold leading-none tracking-wide truncate">{{user.nama_akun}}</span>
+                <span class="w-20 mt-1 text-xs leading-none text-gray-500 truncate">{{user.email}}</span>
               </span>
             </div>
           </div>
@@ -413,7 +397,7 @@
       <div [class]="!logout ? 'logout-noactive':'logout-active'">
         <div class="flex flex-col text-sm text-gray-500 bg-white border border-gray-300 rounded-lg shadow-lg w-60">
 
-          <div class="flex px-4 py-5 rounded cursor-pointer hover:bg-blue-100 hover:bg-gray-100">
+          <div (click)="logouts()"  class="flex px-4 py-5 rounded cursor-pointer hover:bg-blue-100 hover:bg-gray-100">
             <svg class="w-5 h-5 mr-4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
               <polygon style="fill:#F4B2B0;" points="13.809,256 154.436,337.19 154.436,174.809 "/>
               <path style="fill:#B3404A;" d="M273.19,203.873H168.245v-29.064c0-4.934-2.632-9.492-6.904-11.958  c-4.272-2.466-9.536-2.466-13.809,0L6.904,244.04C2.632,246.507,0,251.065,0,255.999s2.632,9.492,6.904,11.958l140.628,81.191  c2.136,1.233,4.52,1.85,6.904,1.85s4.768-0.617,6.904-1.85c4.272-2.466,6.904-7.024,6.904-11.958v-29.064H273.19  c7.625,0,13.809-6.182,13.809-13.809V217.68C286.998,210.055,280.815,203.873,273.19,203.873z M140.628,313.274L41.426,256  l99.202-57.275v18.956v76.637V313.274z M259.381,280.51h-91.136v-49.02h91.136V280.51z"/>
@@ -488,7 +472,7 @@
         </div>
       </div>
     </header>
-    <div class="flex flex-col flex-grow p-4 main-content">
+    <div class="flex flex-col flex-grow p-4 overflow-x-scroll main-content">
      <router-outlet></router-outlet>
     </div>
     <footer class="px-4 py-6 footer">
