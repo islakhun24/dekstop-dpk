@@ -50,9 +50,11 @@ export class DocumentComponent implements OnInit {
 
     if(!this.state){
        router.navigate(['checkers/smu',this.id])
-      this.qty = 0
-      this.total_berat = 0
+
     }else{
+
+
+
       this.data_smu = JSON.parse(this.router?.getCurrentNavigation()?.extras.state?.data)
       this.qty= this.data_smu.length
       this.total_berat = this.data_smu.map((o:any) => o.berat_total).reduce((a:any, c:any) => { return a + c });
@@ -68,13 +70,13 @@ export class DocumentComponent implements OnInit {
 
         return  val.nama_agen
       })
+      apiService.project_detail(this.id).subscribe((data:any)=>{
+
+        this.detail = data.data
+
+      })
     }
 
-    apiService.project_detail(this.id).subscribe((data:any)=>{
-      console.log(data);
-
-      this.detail = data.data
-    })
 
 
   }

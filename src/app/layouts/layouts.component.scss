@@ -1,5 +1,5 @@
 .isNotActive{
-  @apply flex flex-row items-center h-10 px-3 rounded-lg text-gray-700 hover:bg-blue-600 hover:text-gray-100
+  @apply flex flex-row items-center h-10 px-3 rounded-lg text-gray-500 hover:bg-blue-600 hover:text-gray-100
 }
 
 .isActive{
@@ -18,15 +18,15 @@
 
 
 .logout-noactive {
-  @apply hidden absolute block top-16 right-2
+  @apply hidden shadow-lg overflow-hidden absolute bg-white block top-16 right-2
 }
 .notif-active {
-  @apply absolute block top-16 right-20
+  @apply absolute shadow-lg overflow-hidden rounded-sm bg-white block top-16 right-40
 }
 
 
 .notif-noactive {
-  @apply hidden absolute block top-16 right-20
+  @apply hidden absolute block top-16 right-40
 }
 
 .out-noactive{
@@ -35,4 +35,9 @@
 
 .out-active{
   @apply absolute top-0 left-0 right-0  min-w-full min-h-full
+}
+
+
+.hitam{
+  color: #333333
 }

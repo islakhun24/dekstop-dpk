@@ -20,5 +20,9 @@ module.exports = {
        tableLayout: ['hover', 'focus'],
       }
     },
-    plugins: [require('@tailwindcss/forms'),require('@tailwindcss/typography')],
+    plugins: [
+      require('@tailwindcss/forms'),
+      require('tailwind-scrollbar-hide'),
+      require('@tailwindcss/typography'),
+    ],
 };

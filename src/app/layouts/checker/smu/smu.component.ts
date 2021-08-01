@@ -2,6 +2,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-smu',
@@ -14,6 +15,7 @@ export class SmuComponent implements OnInit {
   detail:any = {}
   checkedList: any = []
   notchecked=false
+  project:any = {}
   constructor(
     private apiService:ApiService,
     private activateRoute:ActivatedRoute,
@@ -22,10 +24,13 @@ export class SmuComponent implements OnInit {
   ) {
     this.id = activateRoute.snapshot.paramMap.get('id')
     apiService.smu_list_checker(this.id).subscribe((data:any)=>{
-      console.log(data);
-
       this.data = data
       this.detail = data[0]
+    })
+
+    apiService.project_detail(this.id).subscribe((data:any)=>{
+      // console.log(data);
+      this.project = data.data
     })
    }
 
@@ -49,8 +54,15 @@ export class SmuComponent implements OnInit {
       queryParams: {
           "data"   : encodeURIComponent(this.data),
       }
-  };
-    this.router.navigate(['/checkers/document', this.id], { state: { data: JSON.stringify(this.checkedList)} });
+    };
+    if(this.project.selesai!==3){
+      return Swal.fire(
+        'Btb belum selesai!',
+        'Silahkan Tunggu sampai proses selesai!',
+        'error'
+      )
+    }
+    return this.router.navigate(['/checkers/document', this.id], { state: { data: JSON.stringify(this.checkedList)} });
     // console.log(this.checkedList);
 
   }

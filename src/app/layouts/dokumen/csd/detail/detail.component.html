@@ -1,6 +1,6 @@
 
- <form  >
-  <div class="min-w-full min-h-full p-4">
+ <form  [formGroup]="form" (submit)="save('')">
+  <div [class]="print ? 'hidden min-w-full min-h-full p-4' : 'min-w-full min-h-full p-4' ">
     <div class="flex justify-end gap-2">
       <button [routerLink]="['/dokumen/csd']" routerLinkActive="router-link-active"   class="flex items-center gap-2 px-8 py-2 font-semibold text-white bg-red-500 rounded-md">
         Kembali</button>
@@ -10,7 +10,7 @@
       >
       <div [hidden]="!isLoading" class="w-3 h-3 mr-2 border-t-2 border-b-2 border-white rounded-full animate-spin"></div>
 
-        Submit
+        Cetak Document
       </button>
     </div>
 
@@ -22,7 +22,7 @@
             >No SMU</label
           >
           <div class="flex flex-wrap my-2 ">
-            <!-- <span *ngFor="let item of data"  class="px-4 py-1 mx-1 my-1 text-sm bg-blue-300 rounded-md">{{item.smu}}</span> -->
+            <span *ngFor="let item of smu"  class="px-4 py-1 mx-1 my-1 text-sm bg-blue-300 rounded-md">{{item.no_smu}}</span>
           </div>
         </div>
         <div class="w-full mt-4 ml-4">
@@ -35,6 +35,7 @@
             ></div>
             <input
             formControlName="isi_kiriman"
+            [(ngModel)]="detail.isi_kiriman"
               type="text"
               name="price"
               id="price"
@@ -55,7 +56,7 @@
             formControlName="nama_agen"
               type="text"
               name="price"
-
+              [(ngModel)]="detail.nama_agen"
               id="price"
               class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Isi Kiriman"
@@ -116,6 +117,7 @@
                   <input
                   formControlName="kota_asal"
                     type="text"
+                    [(ngModel)]="detail.kota_asal"
                     name="price"
                     id="price"
                     class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -160,6 +162,7 @@
                   <input
                   formControlName="kota_tujuan"
                     type="text"
+                    [(ngModel)]="detail.kota_tujuan"
                     name="price"
                     id="price"
                     class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -188,8 +191,10 @@
             <input
             formControlName="tanggal_penerbangan"
               type="date"
-              name="price"
-              id="price"
+              [(ngModel)]="detail.tanggal_penerbangan"
+              value="2021-07-14"
+              name="tanggal_penerbangan"
+              id="tanggal_penerbangan"
               class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="No."
             />
@@ -207,6 +212,7 @@
             formControlName="nama_pesawat"
               type="text"
               name="price"
+              [(ngModel)]="detail.nama_pesawat"
               id="price"
               class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Nama Pesawat"
@@ -224,6 +230,7 @@
             <input
               formControlName="nomor_polisi_kendaraan"
               type="text"
+              [(ngModel)]="detail.nomor_polisi_kendaraan"
               name="price"
               id="price"
               class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -242,6 +249,7 @@
             <input
               formControlName="nama_pengemudi"
               type="text"
+              [(ngModel)]="detail.nama_pengemudi"
               name="price"
               id="price"
               class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -258,9 +266,10 @@
               class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
             ></div>
             <input
-              formControlName="nama_pengemudi"
+              formControlName="pengecualian_pemeriksaan"
               type="text"
               name="price"
+              [(ngModel)]="detail.pengecualian_pemeriksaan"
               id="price"
               class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Codes"
@@ -276,8 +285,9 @@
               class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
             ></div>
             <input
-              formControlName="nama_pengemudi"
+              formControlName="status_keamanan_diterbitkan_oleh"
               type="text"
+              [(ngModel)]="detail.status_keamanan_diterbitkan_oleh"
               name="price"
               id="price"
               class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -295,13 +305,13 @@
           >
           <div class="grid grid-cols-3 gap-2">
             <label class="inline-flex items-center col-span-1 mt-3">
-              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_keamanan"  value="SPX"><span class="ml-2 text-gray-700">SPX</span>
+              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_keamanan"  value="SPX" (change)="changeKeamanan($event)" [checked]="detail.status_keamanan==='SPX'"><span class="ml-2 text-gray-700">SPX</span>
             </label>
             <label class="inline-flex items-center col-span-1 mt-3">
-              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_keamanan"  value="SCO"><span class="ml-2 text-gray-700">SCO</span>
+              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_keamanan"  value="SCO" (change)="changeKeamanan($event)" [checked]="detail.status_keamanan==='SCO'"><span class="ml-2 text-gray-700">SCO</span>
             </label>
             <label class="inline-flex items-center col-span-1 mt-3">
-              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_keamanan"  value="SHR"><span class="ml-2 text-gray-700">SHR</span>
+              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_keamanan"  value="SHR" (change)="changeKeamanan($event)" [checked]="detail.status_keamanan==='SHR'"><span class="ml-2 text-gray-700">SHR</span>
             </label>
           </div>
         </div>
@@ -311,16 +321,16 @@
           >
           <div class="grid grid-cols-4 gap-2">
             <label class="inline-flex items-center col-span-1 mt-3">
-              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_pemeriksaan"  value="X-Ray"><span class="ml-2 text-gray-700" >X-Ray</span>
+              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_pemeriksaan"  value="X-Ray" (change)="changePemerikasaan($event)" [checked]="detail.metode_pemeriksaan==='X-Ray'"><span class="ml-2 text-gray-700" >X-Ray</span>
             </label>
             <label class="inline-flex items-center col-span-1 mt-3">
-              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_pemeriksaan"  value="ETD"><span class="ml-2 text-gray-700" >ETD</span>
+              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_pemeriksaan"  value="ETD" (change)="changePemerikasaan($event)" [checked]="detail.metode_pemeriksaan==='ETD'"><span class="ml-2 text-gray-700" >ETD</span>
             </label>
             <label class="inline-flex items-center col-span-1 mt-3">
-              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_pemeriksaan"  value="EDD"><span class="ml-2 text-gray-700" >EDD</span>
+              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_pemeriksaan"  value="EDD" (change)="changePemerikasaan($event)" [checked]="detail.metode_pemeriksaan==='EDD'"><span class="ml-2 text-gray-700" >EDD</span>
             </label>
             <label class="inline-flex items-center col-span-1 mt-3">
-              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_pemeriksaan"  value="Other"><span class="ml-2 text-gray-700" >Other</span>
+              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_pemeriksaan"  value="Other" (change)="changePemerikasaan($event)" [checked]="detail.metode_pemeriksaan==='Other'"><span class="ml-2 text-gray-700" >Other</span>
             </label>
           </div>
         </div>
@@ -330,10 +340,10 @@
           >
           <div class="grid grid-cols-4 gap-2">
             <label class="inline-flex items-center col-span-1 mt-3">
-              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_transit"  value="Ada"><span class="ml-2 text-gray-700">Ada</span>
+              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_transit"  (change)="changeTransit($event)" value="Ada" [checked]="detail.transit==='Ada'"><span class="ml-2 text-gray-700">Ada</span>
             </label>
             <label class="inline-flex items-center col-span-1 mt-3">
-              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_transit"  value="Tidak Ada"><span class="ml-2 text-gray-700">Tidak Ada</span>
+              <input type="radio" class="w-5 h-5 text-blue-600 form-radio" name="group_transit"  (change)="changeTransit($event)" value="Tidak Ada" [checked]="detail.transit==='Tidak Ada'"><span class="ml-2 text-gray-700">Tidak Ada</span>
             </label>
 
           </div>
@@ -347,7 +357,8 @@
               class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
             ></div>
             <input
-              formControlName="nomor_polisi_kendaraan"
+              formControlName="no_segel_keamanan_kendaraan"
+              [(ngModel)]="detail.no_segel_keamanan_kendaraan"
               type="text"
               name="price"
               id="price"
@@ -366,8 +377,9 @@
                 class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
               ></div>
               <input
-              formControlName="pengecualian_pemeriksaan"
+              formControlName="no_kunci_plastik_solid"
                 type="text"
+                [(ngModel)]="detail.no_kunci_plastik_solid"
                 name="price"
                 id="price"
                 class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -384,8 +396,9 @@
                 class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
               ></div>
               <input
-              formControlName="status_keamanan_diterbitkan_oleh"
+              formControlName="nama_pengemudi_csd"
                 type="text"
+                [(ngModel)]="detail.nama_pengemudi_csd"
                 name="price"
                 id="price"
                 class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -397,7 +410,186 @@
       </div>
     </div>
     <h3 class="mx-4 mt-8 text-xl font-bold border-b">Pass Check List </h3>
-
+    <div class="grid grid-cols-2 gap-4 mt-8">
+        <div class="col-span-1">
+          <div class="w-full ml-4">
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >Warehouse Destination</label
+            >
+            <div class="relative mt-1 rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+              ></div>
+              <input
+              formControlName="warehouse_destination"
+                type="text"
+                [(ngModel)]="detail.warehouse_destination"
+                name="price"
+                id="price"
+                class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Warehouse Destination"
+              />
+            </div>
+          </div>
+          <div class="w-full mt-4 ml-4">
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >Consignor Name</label
+            >
+            <div class="relative mt-1 rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+              ></div>
+              <input
+              formControlName="cosignor_name"
+                type="text"
+                [(ngModel)]="detail.cosignor_name"
+                name="price"
+                id="price"
+                class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Consignor Name"
+              />
+            </div>
+          </div>
+          <div class="w-full mt-4 ml-4">
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >TIme of Departure</label
+            >
+            <div class="relative mt-1 rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+              ></div>
+              <input
+                formControlName="time_of_departure"
+                type="time"
+                [(ngModel)]="detail.time_of_departure"
+                name="price"
+                id="price"
+                class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="00:00"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-span-1">
+          <div class="w-full ml-4">
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >Company Name</label
+            >
+            <div class="relative mt-1 rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+              ></div>
+              <input
+              formControlName="company_name"
+              [(ngModel)]="detail.company_name"
+                type="text"
+                name="price"
+                id="price"
+                class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Company Name"
+              />
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mt-4">
+            <div class="col-span-1">
+              <div class="w-full ml-4">
+                <label for="price" class="block text-sm font-medium text-gray-700"
+                  >Vehicle Number</label
+                >
+                <div class="relative mt-1 rounded-md shadow-sm">
+                  <div
+                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                  ></div>
+                  <input
+                  formControlName="vehicle_number"
+                    type="text"
+                    name="price"
+                    [(ngModel)]="detail.vehicle_number"
+                    id="price"
+                    class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Vehicle Number"
+                  />
+                </div>
+              </div>
+              <div class="w-full mt-4 ml-4">
+                <label for="price" class="block text-sm font-medium text-gray-700"
+                  >Truck Security Label</label
+                >
+                <div class="relative mt-1 rounded-md shadow-sm">
+                  <div
+                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                  ></div>
+                  <input
+                  formControlName="truck_security_steal"
+                    type="text"
+                    [(ngModel)]="detail.truck_security_steal"
+                    name="price"
+                    id="price"
+                    class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Truck Security Label"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-span-1">
+              <div class="w-full ml-4">
+                <label for="price" class="block text-sm font-medium text-gray-700"
+                  >Truck Security Seal</label
+                >
+                <div class="relative mt-1 rounded-md shadow-sm">
+                  <div
+                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                  ></div>
+                  <input
+                  formControlName="truck_security_label"
+                    type="text"
+                    [(ngModel)]="detail.truck_security_label"
+                    name="price"
+                    id="price"
+                    class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Truck Security Seal"
+                  />
+                </div>
+              </div>
+              <div class="w-full mt-4 ml-4">
+                <label for="price" class="block text-sm font-medium text-gray-700"
+                  >Driver Name</label
+                >
+                <div class="relative mt-1 rounded-md shadow-sm">
+                  <div
+                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                  ></div>
+                  <input
+                  formControlName="driver_name"
+                  [(ngModel)]="detail.driver_name"
+                    type="text"
+                    name="price"
+                    id="price"
+                    class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Driver Name"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
 
   </form>
+
+
+
+<div  [class]="isList ? 'showss' : 'hiddenss'" style="background: rgba(0, 0, 0, 0.3);">
+  <div class="flex flex-col items-center px-5 py-2 bg-white border rounded-lg">
+    <div class="relative block w-20 h-5 mt-2 loader-dots">
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+    </div>
+    <div class="mt-2 text-xs font-light text-center text-gray-500">
+      Silahkan tunggu...
+    </div>
+  </div>
+  </div>

@@ -181,6 +181,10 @@ export class ApiService {
     return this.http.get(`${base_url}main2/document/invoice/${agen}`)
 
   }
+  invoice_detail2(no_invoice: any){
+    return this.http.post(`${base_url}main2/document/invoices/history/cetak`,{no_invoice: no_invoice})
+
+  }
 
   cetak_invoice(data:any){
     return this.http.post(`${base_url}main2/document/invoice/cetak`, data)
@@ -214,4 +218,17 @@ export class ApiService {
   invoice_print(agen:any, noinvoice:any){
     return this.http.put(`${base_url}main2/invoice/detail/${agen}`,{noinvoice: noinvoice})
   }
+
+  csd_detail(id:any){
+    return this.http.get(`${base_url}/api/main2/document/csd/detail/${id}`)
+}
+csd_smu(id:any){
+  return this.http.get(`${base_url}main2/document/csd/smu/${id}`)
+}
+csd_update(id:any, formdata:any){
+  return this.http.put(`${base_url}main2/document/csd/print/${id}`,formdata)
+}
+csd_smu2(id:any, project_id:any){
+  return this.http.get(`${base_url}main2/document/csd/smu2/${id}/${project_id}`)
+}
 }

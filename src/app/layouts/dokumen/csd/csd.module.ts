@@ -15,7 +15,9 @@ import { DetailComponent } from './detail/detail.component';
   ],
   imports: [
     CommonModule,
-    CsdRoutingModule
+    CsdRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class CsdModule { }

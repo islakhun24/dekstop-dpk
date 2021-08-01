@@ -14,7 +14,8 @@ export class CheckerComponent implements OnInit {
   data :any = []
   detail:any = {}
   form:FormGroup
-
+  project:any = {}
+  message:any =''
   ischecker = false
   constructor(
     private apiService:ApiService,
@@ -29,6 +30,18 @@ export class CheckerComponent implements OnInit {
     apiService.smu_list_checker(this.id).subscribe((data:any)=>{
       this.data = data
       this.detail = data[0]
+      console.log(this.data);
+
+    })
+    apiService.project_detail(this.id).subscribe((data:any)=>{
+      this.project = data.data
+
+      if(this.project.selesai==0){
+        this.message = 'Tugas dengan nomor '+this.project.no+' masih di proses  acceptance'
+      }
+      if(this.project.selesai==1){
+        this.message = 'Tugas dengan nomor '+this.project.no+' selesai diproses  acceptance'
+      }
     })
   }
 
@@ -53,7 +66,7 @@ export class CheckerComponent implements OnInit {
       checker = 2
     }
 
-    if(this.detail.checker!==0){
+    if(parseInt(this.detail.checker)!==0){
       Swal.fire(
         'Pengecekan telah selesai!',
         'Silahkan reject barang jika ada yang perlu di reject!',
@@ -68,8 +81,15 @@ export class CheckerComponent implements OnInit {
     fomdata.checker = checker
     fomdata.id = this.detail.id
     fomdata.project_id = this.id
+    if(fomdata.berat==0 || fomdata.berat==''){
+      return Swal.fire(
+        'Data tidak boleh 0!',
+        'Silahkan Periksa kembali!',
+        'success'
+      )
+    }
 
-    this.apiService.smu_checker(fomdata).subscribe((data:any)=>{
+    return this.apiService.smu_checker(fomdata).subscribe((data:any)=>{
       this.form.reset()
       this.data = data
       this.detail = data[0]

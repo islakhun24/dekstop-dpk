@@ -17,6 +17,7 @@ import { CustomerModule } from './layouts/customer/customer.module';
 import { CheckerModule } from './layouts/checker/checker.module';
 // import { CsdModule } from './layouts/dokumen/csd/csd.module';
 import { InvoiceModule } from './layouts/dokumen/invoice/invoice.module';
+// import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
