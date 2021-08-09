@@ -1,3 +1,4 @@
+import { TeamComponent } from './team/team.component';
 import { AdminOperasionalComponent } from './admin-operasional/admin-operasional.component';
 import { CetakComponent } from './dokumen/invoice/cetak/cetak.component';
 import { DetailComponent } from './dokumen/invoice/detail/detail.component';
@@ -73,8 +74,8 @@ const routes: Routes = [
   },
   {
     path: 'team',
-    component: CheckerComponent,
-    loadChildren: () => import('./checker/checker.module').then(m => m.CheckerModule)
+    component: TeamComponent,
+    loadChildren: () => import('./team/team.module').then(m => m.TeamModule)
   }
 ];
 

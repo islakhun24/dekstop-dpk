@@ -17,12 +17,15 @@ export class SmuComponent implements OnInit {
     private router:Router
   ) {
       this.id = activatedRoute.snapshot.paramMap.get('id')
-      apiService.admin_smu(this.id).subscribe(data=>{
-        console.log(data);
-        this.data = data
-      })
+    setInterval(()=>{
+      this.fetchData()
+    },3000)
   }
-
+  fetchData(){
+    this.apiService.admin_smu(this.id).subscribe(data=>{
+      this.data = data
+    })
+  }
   ngOnInit(): void {
   }
   accept(){

@@ -1,0 +1,174 @@
+
+<section class="px-4 pt-4 pb-4 space-y-4 sm:px-6 lg:px-4 xl:px-6 sm:pb-6 lg:pb-4 xl:pb-6">
+  <div class="flex flex-row items-center justify-between w-full mb-1 space-x-4 sm:mb-0">
+    <div class="flex w-full max-w-sm space-x-3">
+          <div class="relative ">
+            <input type="text"  class="flex-1 w-full h-10 px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="name"/>
+          </div>
+          <a class="flex-shrink-0 h-10 px-4 py-2 text-base font-normal text-gray-700 cursor-pointer ">
+              Filter
+          </a>
+    </div>
+    <div class="flex justify-end flex-grow space-x-2">
+        <button (click)="clickStatus(0,0)"  [class]="status ===0 ? 'active':'inactive'">Semua</button>
+        <button *ngFor="let item of teams; index as i" (click)="clickStatus(i+1, item.id)" [class]="status===i+1 ? 'active':'inactive'">{{item.nama}}</button>
+    </div>
+  </div>
+
+  <div class="mt-8 overflow-x-auto">
+    <table class="w-full table-auto min-w-max">
+      <thead>
+          <tr class="text-sm leading-normal text-gray-600 uppercase bg-gray-200">
+              <th width="10px" class="px-2 py-3 text-left">No.</th>
+              <th class="px-6 py-3 text-left">Nama</th>
+              <th class="px-6 py-3 text-left">Jabatan</th>
+              <th class="px-6 py-3 text-left">Email</th>
+              <th class="px-6 py-3 text-left">Keterangan</th>
+              <th class="px-6 py-3 text-left">Action</th>
+          </tr>
+      </thead>
+      <tbody class="text-sm font-light text-gray-600">
+      <tr *ngFor="let data of users; index as i"   >
+          <td class="not_active">
+
+              <p class="text-gray-900 whitespace-no-wrap">{{i+1}}</p>
+          </td>
+          <td class="not_active">
+            <div class="flex items-center justify-start space-x-2">
+              <img src="assets/avatar1.png" class="object-cover w-12 h-12 rounded-full" alt="">
+              <span class="font-bold">{{data.nama}}</span>
+            </div>
+          </td>
+          <td class="not_active">
+            <div class="flex items-center">
+             <div class="flex-grow">
+                <div class="font-bold text-black">{{data.unit}}</div>
+                <div class="font-light text-gray-400">Staf</div>
+             </div>
+             <div *ngIf="data.team !== null"  class="flex-none">
+               <span class="flex items-center h-6 px-2 text-sm font-semibold text-center text-blue-500 bg-blue-200 rounded-full">{{data.team.nama}}</span>
+             </div>
+            </div>
+          </td>
+          <td class="not_active">
+            <div class="font-bold text-black">{{data.email}}</div>
+          </td>
+          <td class="not_active">
+            <div *ngIf="data.keterangan || data?.user?.nama "  class="flex-grow">
+              <div class="font-bold text-green-500">{{data.keterangan}}</div>
+              <div class="font-light text-gray-400">{{data?.user?.nama}}</div>
+           </div>
+           <div *ngIf="!data.keterangan && !data?.user?.nama "  class="flex-grow text-gray-400">
+              Tidak ada
+           </div>
+          </td>
+
+          <td class="not_active">
+            <div *ngIf="!data.team"  class="m-6 space-x-1">
+              <select name="" (change)="levelChange($event, data.id, data.nama)"  class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="">
+                <option value="0" hidden >Ganti Tugas</option>
+                <option *ngFor="let item of teams"   [value]="item.id">{{item.nama}}</option>
+
+              </select>
+
+            </div>
+            <div *ngIf="data.team" class="flex flex-shrink m-6 space-x-1">
+              <select name="" (change)="levelChange($event, data.id,  data.nama)"  class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="">
+                <option value="" disabled >Pilih Level</option>
+                <option *ngFor="let item of teams" [value]="item.id" [selected]="item.id === data.id_team"  value="1">{{item.nama}}</option>
+
+              </select>
+              <button
+              (click)="toggleModals(data.id, data.id_user)"
+              class="flex-grow inline-block p-2 text-center text-white transition rounded-full ripple hover:shadow-lg focus:outline-none"
+            >
+              <svg class="w-3 h-3 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" fill="currentColor">
+                <path d="m235.605469 203.519531v25.742188c0 8.175781 1.632812 15.035156 4.855469 20.378906 4.445312 7.375 11.742187 11.601563 20.027343 11.601563 8.117188 0 16.183594-3.953126 23.972657-11.742188l85.023437-85.023438c18.667969-18.667968 18.667969-49.042968 0-67.710937l-85.023437-85.023437c-7.789063-7.792969-15.855469-11.742188-23.972657-11.742188-12.386719 0-24.882812 9.890625-24.882812 31.980469v23.378906c-120.710938 7.128906-220.640625 99.765625-235.492188 221.050781-.832031 6.773438 3.019531 13.257813 9.367188 15.769532 1.796875.710937 3.667969 1.054687 5.515625 1.054687 4.679687 0 9.21875-2.191406 12.109375-6.140625 39.835937-54.429688 103.796875-86.925781 171.09375-86.925781 12.46875 0 25.007812 1.125 37.40625 3.351562zm0 0"/><path d="m438.253906 219.820312c-6.347656-2.515624-13.589844-.421874-17.625 5.089844-39.832031 54.425782-103.792968 86.921875-171.089844 86.921875-12.46875 0-25.007812-1.125-37.40625-3.351562v-25.742188c0-22.089843-12.5-31.980469-24.882812-31.980469-8.117188 0-16.183594 3.953126-23.976562 11.746094l-85.023438 85.019532c-18.664062 18.667968-18.664062 49.042968.003906 67.714843l85.019532 85.019531c7.792968 7.792969 15.859374 11.742188 23.976562 11.742188 12.382812 0 24.882812-9.890625 24.882812-31.980469v-23.378906c120.714844-7.128906 220.640626-99.765625 235.492188-221.046875.832031-6.777344-3.019531-13.261719-9.371094-15.773438zm0 0"/>
+              </svg>
+            </button>
+
+              <button
+              (click)="hapus(data.id, data.nama)"
+              class="inline-block p-2 text-center text-white transition rounded-full ripple hover:shadow-lg focus:outline-none"
+            >
+              <svg class="w-3 h-3 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+            </div>
+          </td>
+        </tr>
+        <tr  *ngIf="users.length === 0" >
+          <td colspan="6" [class]="['not_active', 'text-center']">
+
+              <p class="text-gray-400 whitespace-no-wrap">Tidak ada data</p>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+</div>
+</section>
+<div *ngIf="showModal" class="fixed inset-0 z-50 bg-black opacity-30"></div>
+
+<div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+  <div class="flex justify-center w-3/6 max-w-2xl mx-auto my-6">
+    <!--content-->
+    <form action="">
+      <div class="relative flex flex-col justify-center w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+        <!--header-->
+        <div class="flex items-center justify-center p-5 border-b border-solid rounded-t border-blueGray-200">
+          <h3 class="text-xl font-semibold">
+            Pilih Tim
+          </h3>
+
+        </div>
+        <!--body-->
+        <div class="relative flex-auto p-6">
+          <div class="w-full">
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >User yang diganti</label
+            >
+            <div class="relative mt-1 rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+              ></div>
+              <select name="" (change)="userCheck($event)"  class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="">
+                <option value="" hidden>Pilih user</option>
+                <option *ngFor="let item of users" [selected]="item.id=== id_user"  [value]="item.id">{{item.nama}}</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+        <!--footer-->
+        <div class="flex items-center justify-end p-6 border-t border-solid rounded-b border-blueGray-200">
+          <button class="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none" type="button" (click)="toggleModal()">
+            Batal
+          </button>
+          <button (click)="submit()"  class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-blue-500 rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none" type="button" (click)="toggleModal()">
+            Simpan
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div  [class]="isList ? 'showss' : 'hiddenss'" style="background: rgba(0, 0, 0, 0.3);">
+  <div class="flex flex-col items-center px-5 py-2 bg-white border rounded-lg">
+    <div class="relative block w-20 h-5 mt-2 loader-dots">
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+    </div>
+    <div class="mt-2 text-xs font-light text-center text-gray-500">
+      Silahkan tunggu...
+    </div>
+  </div>
+  </div>

@@ -231,4 +231,35 @@ csd_update(id:any, formdata:any){
 csd_smu2(id:any, project_id:any){
   return this.http.get(`${base_url}main2/document/csd/smu2/${id}/${project_id}`)
 }
+
+notif_all(formdata:any){
+  return this.http.post(`${base_url}main2/notif/all`, formdata)
+}
+
+//Team
+
+team(){
+  return this.http.get(`${base_url}main2/team`)
+}
+
+team_list(){
+  return this.http.get(`${base_url}main2/team/list`)
+}
+
+team_tampil(){
+  return this.http.get(`${base_url}main2/tim/tampil`)
+}
+team_tampil_pertimn(id:any){
+  return this.http.get(`${base_url}main2/tim/tampil/${id}`)
+}
+
+ganti_team(id:any, id_team:any){
+  return this.http.get(`${base_url}main2/tim/ganti/${id}/${id_team}`)
+}
+hapus_tim(id:any){
+  return this.http.get(`${base_url}main2/tim/hapus/${id}`)
+}
+cover_tim(formdata:any){
+  return this.http.post(`${base_url}main2/tim/cover`, formdata)
+}
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import { Checker } from 'src/app/models/checker';
 
 @Component({
   selector: 'app-smu',
@@ -16,6 +17,7 @@ export class SmuComponent implements OnInit {
   checkedList: any = []
   notchecked=false
   project:any = {}
+  checker: Array<Checker> = []
   constructor(
     private apiService:ApiService,
     private activateRoute:ActivatedRoute,
@@ -23,28 +25,64 @@ export class SmuComponent implements OnInit {
     private router:Router
   ) {
     this.id = activateRoute.snapshot.paramMap.get('id')
-    apiService.smu_list_checker(this.id).subscribe((data:any)=>{
-      this.data = data
-      this.detail = data[0]
-    })
-
-    apiService.project_detail(this.id).subscribe((data:any)=>{
-      // console.log(data);
-      this.project = data.data
-    })
+    setInterval(()=>{
+      this.fetchData()
+    },5000)
    }
 
   ngOnInit(): void {
     // $state.reload()
   }
+  fetchData(){
+    this.apiService.smu_list_checker(this.id).subscribe(async (data:any)=>{
+      const datas = await data.map((val:any)=>{
 
-  check(event: any, pos: any){
+          let objIndex = this.data.findIndex(((obj:any) => obj.id == val.id));
+          // console.log(objIndex);
+          if(objIndex===-1){
+            this.data.push( {
+              id : val.id,
+              smu : val.smu,
+              nama_barang : val.nama_barang,
+              nama_agen : val.nama_agen,
+              no_hp : val.no_hp,
+              alamat : val.alamat,
+              status : val.status,
+              koli : val.koli,
+              berat_awal : val.berat_awal,
+              berat_recharge_cargo : val.berat_recharge_cargo,
+              berat_total : val.berat_total,
+              checker : val.checker,
+              project_id : val.project_id,
+              select : false
+             })
+          }
+
+      })
+      const data2 : any = await Promise.all(datas)
+      console.log(this.data);
+      // this.data = this.mergeDiffs(this.data, data2)
+
+    })
+
+    this.apiService.project_detail(this.id).subscribe((data:any)=>{
+
+      this.project = data.data
+    })
+  }
+  check(event: any, pos: any, id:any){
     if ( event.target.checked ) {
-      this.checkedList.push(this.data[pos])
+        this.checkedList.push(this.data[pos])
+        let objIndex = this.data.findIndex(((obj:any) => obj.id == id));
+        this.data[objIndex].select = true
+        console.log(this.data);
       }else{
         this.checkedList = this.checkedList.filter(( obj: any ) => {
           return obj.id !== this.data[pos].id;
         });
+        let objIndex = this.data.findIndex(((obj:any) => obj.id == id));
+        this.data[objIndex].select = false
+        console.log(this.data);
       }
 
   }
@@ -66,5 +104,17 @@ export class SmuComponent implements OnInit {
     // console.log(this.checkedList);
 
   }
+  mergeDiffs(Schedulearray1:any, Schedulearray2:any) {
+      var secondArrayIDs = Schedulearray2.map((x:any)=> x.id);
+      return Schedulearray1.filter((x:any)=> !secondArrayIDs.includes(x.id)).concat(Schedulearray2);
+  }
+  update(id: any, prop: string | number, val: any) {
+    var person = this.data.find((p: any)=> {
+      return p.id === id;
+    });
 
+    if (person && person[prop]) {
+      person[prop] = val;
+    }
+  }
 }

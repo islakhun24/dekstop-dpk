@@ -1,3 +1,4 @@
+import { CetakSemuaComponent } from './cetak-semua/cetak-semua.component';
 import { DetailComponent } from './detail/detail.component';
 import { RiwayatComponent } from './riwayat/riwayat.component';
 import { AktifComponent } from './aktif/aktif.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path:'riwayat',
     component:RiwayatComponent,
+  },
+  {
+    path:'cetak-semua',
+    component:CetakSemuaComponent,
   }
 ];
 

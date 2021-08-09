@@ -1,3 +1,4 @@
+import { ApiService } from './../services/api.service';
 import { TokenStorageService } from './../services/token-storage.service';
 import { HostListener , ElementRef} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
@@ -18,11 +19,14 @@ export class LayoutsComponent implements OnInit {
   title='Dashboard'
   out = false
   user:any = {}
+  dataNotif:any = []
   constructor(
     private eRef: ElementRef,
     private router: Router,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private apiService:ApiService
   ) {
+
     router.events.subscribe((val:any) => this.out = false)
    }
    @HostListener('document:click', ['$event']) onDocumentClick($event:any) {
@@ -38,7 +42,16 @@ export class LayoutsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.tokenStorage.getUser()
-    // console.log(this.user);
+    setInterval(()=>{
+      this.apiService.notif_all({
+        wewenang: this.user.unit,
+        team: this.user.id_team,
+        unit:this.user.unit
+      }).subscribe((data:any)=>{
+        this.dataNotif = data
+
+      })
+    },2000)
     if (window.screen.width < 992) {
       this.mobile = true;
     }
@@ -83,6 +96,9 @@ export class LayoutsComponent implements OnInit {
       this.isActive = 9
       this.title = 'Team'
     }
+    // this.apiService.n
+
+
   }
   click(num:number){
 

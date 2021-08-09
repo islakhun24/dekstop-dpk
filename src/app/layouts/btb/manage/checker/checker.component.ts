@@ -27,13 +27,19 @@ export class CheckerComponent implements OnInit {
       berat: ['']
     })
     this.id = activateRoute.snapshot.paramMap.get('id')
-    apiService.smu_list_checker(this.id).subscribe((data:any)=>{
+    setInterval(()=>{
+      this.fetchData()
+    },3000)
+  }
+
+  fetchData(){
+    this.apiService.smu_list_checker(this.id).subscribe((data:any)=>{
       this.data = data
       this.detail = data[0]
       console.log(this.data);
 
     })
-    apiService.project_detail(this.id).subscribe((data:any)=>{
+    this.apiService.project_detail(this.id).subscribe((data:any)=>{
       this.project = data.data
 
       if(this.project.selesai==0){
@@ -44,7 +50,6 @@ export class CheckerComponent implements OnInit {
       }
     })
   }
-
   ngOnInit(): void {
 
   }

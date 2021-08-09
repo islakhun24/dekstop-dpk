@@ -13,9 +13,17 @@ export class ProjectComponent implements OnInit {
   constructor(
     private apiService:ApiService
   ) {
-    this.apiService.admin_get().subscribe((data:any)=>{
-      console.log(data);
+    setInterval(()=>{
+      this.fetchData()
+    },3000)
+  }
 
+  ngOnInit(): void {
+
+  }
+
+  fetchData(){
+    this.apiService.admin_get().subscribe((data:any)=>{
       this.project = data.data
       this.isList = false
 
@@ -31,9 +39,5 @@ export class ProjectComponent implements OnInit {
       this.isList = false
 
     })
-  }
-
-  ngOnInit(): void {
-
   }
 }

@@ -23,6 +23,8 @@ export class CreateComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
       nama_akun: ['', Validators.required],
+      nik: ['', Validators.required],
+      alamat: ['', Validators.required],
       tgl_lahir: ['', Validators.required],
     })
    }

@@ -45,14 +45,20 @@ export class ScanComponent implements AfterViewInit {
       berat_recharge_cargo: [''],
       project_id: ['']
     });
-    apiService.project_detail(this.id).subscribe(((data: any)=>{
+    setInterval(()=>{
+      this.fetchData()
+    },3000)
+  }
+
+  fetchData(){
+    this.apiService.project_detail(this.id).subscribe(((data: any)=>{
       this.detail = data.data;
 
     }));
 
-    apiService.smu_list2(this.id).subscribe((data: any)=>{
+    this.apiService.smu_list2(this.id).subscribe((data: any)=>{
       this.data = data;
-      console.log('asa',data);
+
     });
   }
   ngAfterViewInit() {
@@ -66,7 +72,7 @@ export class ScanComponent implements AfterViewInit {
   }
 
   onStarted(started: any) {
-    console.log(started);
+
   }
   toggleModal(){
     this.showModal = !this.showModal;

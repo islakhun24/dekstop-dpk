@@ -7,6 +7,7 @@ import { RiwayatComponent } from './riwayat/riwayat.component';
 import { DetailComponent } from './detail/detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CetakComponent } from './cetak/cetak.component';
+import { CetakSemuaComponent } from './cetak-semua/cetak-semua.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { CetakComponent } from './cetak/cetak.component';
 
     AktifComponent,
         RiwayatComponent,
-        AktifComponent
+        AktifComponent,
+        CetakSemuaComponent
   ],
   imports: [
     CommonModule,

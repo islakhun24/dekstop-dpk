@@ -13,6 +13,15 @@ export class ListComponent implements OnInit {
   constructor(
     private apiService:ApiService
   ) {
+      setInterval(()=>{
+        this.fetchData()
+      },3000)
+  }
+
+  ngOnInit(): void {
+
+  }
+  fetchData(){
     this.apiService.btb_get().subscribe((data:any)=>{
 
       this.project = data.data
@@ -30,9 +39,5 @@ export class ListComponent implements OnInit {
       this.isList = false
 
     })
-  }
-
-  ngOnInit(): void {
-
   }
 }

@@ -28,14 +28,19 @@ export class RejectComponent implements OnInit {
       berat: ['']
     })
     this.id = activateRoute.snapshot.paramMap.get('id')
-    apiService.btb_reject(this.id).subscribe((data:any)=>{
+    setInterval(()=>{
+      this.fetchData()
+    },3000 )
+  }
+
+  fetchData(){
+    this. apiService.btb_reject(this.id).subscribe((data:any)=>{
       this.data = data
       this.detail = data[0]
       this.berat_awal = this.detail.berat_awal
       this.berat_total = this.detail.berat_total
     })
   }
-
   ngOnInit(): void {
 
   }

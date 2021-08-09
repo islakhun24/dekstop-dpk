@@ -256,9 +256,9 @@
             <span class="ml-3">User</span>
           </a>
         </li>
-        <li *ngIf="user.level == '1'" class="hidden my-px">
+        <li *ngIf="user.level == '1'" class="my-px ">
           <a
-            [routerLink]="['./']"
+            [routerLink]="['/team/list']"
             (click)="click(9)"
             [class]="isActive===9?'isActive':'isNotActive'"
           >
@@ -438,13 +438,17 @@
         <a href="#" class="block py-2 font-bold text-center text-white bg-gray-800">Semua notifikasi</a>
 
         <div class="">
-          <a href="#" class="flex items-center px-4 py-3 -mx-2 border-b hover:bg-gray-100">
+          <a *ngFor="let item of dataNotif"  href="#" class="flex items-center px-4 py-3 -mx-2 border-b hover:bg-gray-100">
               <img class="object-cover w-8 h-8 mx-1 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="avatar">
               <p class="mx-2 text-sm text-gray-600">
-                  <span class="font-bold" href="#">Sara Salah</span> replied on the <span class="font-bold text-blue-500" href="#">Upload Image</span> artical . <br> 2m
+                  <span class="font-bold" href="#">{{item.header}}</span> <br/> {{item.message}} dari <span class="font-bold text-blue-500" href="#">{{item.from}}</span> . <br> {{item.updatedAt}}
               </p>
           </a>
-
+          <div *ngIf="dataNotif.length === 0"  href="#" class="flex items-center px-4 py-3 -mx-2 border-b hover:bg-gray-100">
+             <p class="mx-20 text-sm text-center text-gray-600">
+              Tidak ada Notifikasi
+            </p>
+        </div>
       </div>
        </div>
     </header>
