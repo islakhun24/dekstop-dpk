@@ -97,9 +97,9 @@
       <div class="flex justify-start mt-16">
         <button
           type="submit"
-          [disabled]="this.detail.checker === 0"
+          [disabled]="this.detail.checker !== '0'"
           [class]="
-            this.detail.checker !== 0
+            this.detail.checker !== '0'
               ? 'px-4 py-2 font-bold text-gray-500 bg-gray-300  rounded  cursor-not-allowed'
               : 'px-4 py-2 font-bold text-white bg-blue-500 rounded  hover:bg-blue-700'
           "
