@@ -19,34 +19,36 @@
 }
 @keyframes loader-dots1 {
   0% {
-      transform: scale(0);
+    transform: scale(0);
   }
   100% {
-      transform: scale(1);
+    transform: scale(1);
   }
 }
 @keyframes loader-dots3 {
   0% {
-      transform: scale(1);
+    transform: scale(1);
   }
   100% {
-      transform: scale(0);
+    transform: scale(0);
   }
 }
 @keyframes loader-dots2 {
   0% {
-      transform: translate(0, 0);
+    transform: translate(0, 0);
   }
   100% {
-      transform: translate(24px, 0);
+    transform: translate(24px, 0);
   }
 }
 
-
-.hiddenss{
-  @apply  hidden  fixed top-0 left-0 z-50  items-center justify-center w-screen h-screen
+.hiddenss {
+  @apply hidden  fixed top-0 left-0 z-50  items-center justify-center w-screen h-screen;
 }
 
-.showss{
-  @apply   flex fixed top-0 left-0 z-50  items-center justify-center w-screen h-screen
+.showss {
+  @apply flex fixed top-0 left-0 z-50  items-center justify-center w-screen h-screen;
+}
+.not_active {
+  @apply px-5 py-5 text-sm border-b border-gray-200;
 }

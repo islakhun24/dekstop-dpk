@@ -12,6 +12,7 @@ declare var moment:any
 export class CreateComponent implements OnInit {
   form:FormGroup
   today:any
+  asal_tps:any = 'IBU'
   constructor(
     private fb : FormBuilder,
     private apisService:ApiService,

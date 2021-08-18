@@ -42,16 +42,16 @@ export class LayoutsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.tokenStorage.getUser()
-    setInterval(()=>{
-      this.apiService.notif_all({
-        wewenang: this.user.unit,
-        team: this.user.id_team,
-        unit:this.user.unit
-      }).subscribe((data:any)=>{
-        this.dataNotif = data
+    // setInterval(()=>{
+    //   this.apiService.notif_all({
+    //     wewenang: this.user.unit,
+    //     team: this.user.id_team,
+    //     unit:this.user.unit
+    //   }).subscribe((data:any)=>{
+    //     this.dataNotif = data
 
-      })
-    },2000)
+    //   })
+    // },2000)
     if (window.screen.width < 992) {
       this.mobile = true;
     }

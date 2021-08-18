@@ -14,6 +14,7 @@ export class CheckerComponent implements OnInit {
   data :any = []
   detail:any = {}
   form:FormGroup
+  details: any = {};
   project:any = {}
   message:any =''
   ischecker = false
@@ -29,7 +30,11 @@ export class CheckerComponent implements OnInit {
     this.id = activateRoute.snapshot.paramMap.get('id')
     setInterval(()=>{
       this.fetchData()
-    },3000)
+    }, 3000)
+    this.apiService.project_detail(this.id).subscribe(((data: any)=>{
+      this.details = data.data;
+
+    }));
   }
 
   fetchData(){

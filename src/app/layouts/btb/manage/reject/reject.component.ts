@@ -17,6 +17,7 @@ export class RejectComponent implements OnInit {
   berat_awal:any
   berat_total:any
   errs=false
+  disable=true
   ischecker = false
   constructor(
     private apiService:ApiService,
@@ -30,9 +31,20 @@ export class RejectComponent implements OnInit {
     this.id = activateRoute.snapshot.paramMap.get('id')
     setInterval(()=>{
       this.fetchData()
+      this.disabled()
     },3000 )
   }
-
+  disabled() {
+    this.apiService.check_approval(this.id).subscribe((data:any)=>{
+      console.log(data);
+      if (data.success === true) {
+          this.disable = false
+      }
+      if (data.success === false) {
+          this.disable = true
+      }
+    })
+  }
   fetchData(){
     this. apiService.btb_reject(this.id).subscribe((data:any)=>{
       this.data = data
@@ -95,5 +107,40 @@ export class RejectComponent implements OnInit {
   selesai(){
     this.router.navigate(['/btb/manage/checker', this.id])
   }
+  kirim_approval() {
+    Swal.fire({
+      title: 'Kirim Aproval?',
+      text: "Apakah ingin kirim approval!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Selesai'
+    }).then((result:any) => {
+      if (result.isConfirmed) {
+         this.apiService.kirim_approval(this.id).subscribe(data=>{
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Berhasil',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(data=>{
+              this.router.navigate(['/btb/manage/checker',this.id])
+          })
 
+        }, err=>{
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Gagal',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
+
+      }
+    })
+    // this.apiService.kirim_approval(this.id).subscribe(data=>{})
+  }
 }

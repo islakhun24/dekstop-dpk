@@ -1,268 +1,376 @@
-<div class="flex w-full gap-2 ">
-
+<div class="flex w-full gap-2">
   <div class="flex flex-col flex-grow p-4 main-content">
     <div class="grid grid-cols-2 gap-4">
-     <div>
-       <h1 class="flex mt-8 ">
-
-        <span class="ml-4 text-4xl font-bold text-blue-500"> {{detail.no_polisi_kendaraan}}</span>
-        <span class="ml-6 font-light">
-          <p class="text-sm">Pengemudi</p>
-          <p class="font-bold ">{{detail.nama_pengemudi}}</p>
-        </span>
-       </h1>
-       <div class="mt-1 font-light">
-
-       </div>
-     </div>
-     <div class="flex justify-end">
-    <div class="flex space-x-2">
-      <button  type="button" (click)="selesai()" class="flex items-center justify-center h-10 px-4 py-2 mt-10 font-light text-white bg-green-500 rounded hover:green-red-700">
-
-        <span class="ml-2 text-base font-medium">Selesai</span></button>
-
-
-    </div>
-    </div>
-   </div>
-   <div class="flex gap-4 p-6">
-   <div class="w-2/6 ">
-
-   </div>
-   <div class="w-4/6 -mt-8">
-
-     <span class="-ml-2">
-       Daftar barang | Total
-     </span>
-     <span class="ml-2 font-bold text-blue-500">
-       {{data.length}} Koli
-     </span>
-   </div>
-   </div>
-   <div class="flex gap-4 -mt-6">
-     <div class="flex w-2/6 h-auto p-2 bg-white rounded-sm">
-      <form [formGroup]="form" (ngSubmit)="save()" class="h-auto flex-nowrap" >
-        <div class="relative flex flex-col w-full ">
-          <!--header-->
-          <div class="flex items-center justify-start p-5 border-b border-solid rounded-t border-blueGray-200">
-            <h3 class="text-xl font-medium text-gray-700 text-start">
-              Tambah SMU
-            </h3>
-
-          </div>
-          <!--body-->
-          <div class="relative flex-auto p-6">
-            <div class="w-full">
-              <label for="price" class="block text-sm font-medium text-gray-700"
-                >Nomor SMU</label
-              >
-              <div class="relative mt-1 rounded-md shadow-sm">
-                <div
-                  class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-                ></div>
-                <input
-                style="text-transform:uppercase"
-                formControlName="smu"
-                  type="text"
-                  name="price"
-                  [(ngModel)]="no_smu"
-                  noautocomplete
-                  autocomplete="off"
-                  autocorrect="off" autocapitalize="off" spellcheck="false"
-                  (keyup)="onSmu($event)"
-                  id="price"
-                  class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  placeholder="Nomor SMU"
-                />
-                <div *ngIf="suggestsmu"  class="mt-1 ">
-                  <div class="absolute z-40 w-full overflow-y-auto bg-white rounded shadow top-100 lef-0 max-h-select svelte-5uyqqj">
-                    <div class="flex flex-col w-full max-h-40">
-                      <li *ngFor="let item of suggestsmu" (click)="smuSelect(item.smu)"  class="p-4 list-none cursor-pointer hover:bg-gray-50">{{item.smu}}</li>
-
-                  </div>
-                </div>
-                </div>
-              </div>
-            </div>
-            <div class="w-full mt-8">
-              <label for="price" class="block text-sm font-medium text-gray-700"
-                >Nama Agen</label
-              >
-              <div class="relative mt-1 rounded-md shadow-sm">
-                <div
-                  class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-                ></div>
-                <input
-                style="text-transform:uppercase"
-                formControlName="nama_agen"
-                  type="text"
-                  noautocomplete
-                  autocomplete="off"
-                  [(ngModel)]="customer.customer"
-                  autocorrect="off" autocapitalize="off" spellcheck="false"
-                  (keyup)="onCustomer($event)"
-                  class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  placeholder="Nama Agen"
-                />
-                <div *ngIf="agens"  class="mt-1 ">
-                  <div class="absolute z-40 w-full overflow-y-auto bg-white rounded shadow top-100 lef-0 max-h-select svelte-5uyqqj">
-                    <div class="flex flex-col w-full max-h-40">
-                      <li *ngFor="let item of agens" (click)="customerSelect(item)"   class="p-4 list-none cursor-pointer hover:bg-gray-50">{{item.customer}}</li>
-
-                  </div>
-                </div>
-                </div>
-              </div>
-            </div>
-            <div class="grid w-full grid-cols-2 gap-4 mt-8">
-              <div class="col-span-1">
-                <label for="price" class="block text-sm font-medium text-gray-700"
-                  >No. Hp Agen</label
-                >
-                <div class="relative mt-1 rounded-md shadow-sm">
-                  <div
-                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-                  ></div>
-                  <input
-                  style="text-transform:uppercase"
-                  formControlName="no_hp"
-                    type="text"
-                    name="price"
-                    [(ngModel)]="customer.nohp"
-                    id="price"
-                    class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="No. Hp Age"
-                  />
-                </div>
-              </div>
-              <div class="col-span-1">
-                <label for="price" class="block text-sm font-medium text-gray-700"
-                  >Alamat Agen</label
-                >
-                <div class="relative mt-1 rounded-md shadow-sm">
-                  <div
-                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-                  ></div>
-                  <input
-                  style="text-transform:uppercase"
-                  formControlName="alamat"
-                    type="text"
-                    name="price"
-                    [(ngModel)]="customer.alamat"
-                    id="price"
-                    class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Alamat Agen"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="w-full mt-8">
-              <label for="price" class="block text-sm font-medium text-gray-700"
-                >Nama Barang</label
-              >
-              <div class="relative mt-1 rounded-md shadow-sm">
-                <div
-                  class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-                ></div>
-                <input
-                formControlName="nama_barang"
-                  type="text"
-                  style="text-transform:uppercase"
-                  noautocomplete
-                  [(ngModel)]="barang.nama_barang"
-                  autocomplete="off"
-                  autocorrect="off" autocapitalize="off" spellcheck="false"
-                  (keyup)="onBarang($event)"
-                  class="block w-full border-gray-300 rounded-md form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  placeholder="Nama Barang"
-                />
-
-                <div *ngIf="barangs"  class="mt-1 ">
-                  <div class="absolute z-40 w-full overflow-y-auto bg-white rounded shadow top-100 lef-0 max-h-select svelte-5uyqqj">
-                    <div class="flex flex-col w-full max-h-40">
-                      <li *ngFor="let item of barangs" (click)="barangSelect(item)"  class="flex p-4 list-none cursor-pointer hover:bg-gray-50"><span class="font-semibold text-gray-300">{{item.kode_barang}}</span>&nbsp; - &nbsp; {{item.nama_barang}}</li>
-    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--footer-->
-          <div class="flex items-center justify-end p-4 border-t border-solid rounded-b border-blueGray-200">
-
-            <button
-            type="submit"
-            class="flex items-center justify-center px-4 px-6 py-2 py-3 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-blue-500 rounded shadow outline-none h-9 bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
+      <div>
+        <h1 class="flex mt-8">
+          <span class="ml-4 text-4xl font-bold text-blue-500">
+            {{ detail.no }}</span
           >
-            <div [hidden]="!isLoading" class="w-3 h-3 mr-2 border-t-2 border-b-2 border-white rounded-full animate-spin"></div>
-
-            Simpan
+          <span class="ml-6 font-light">
+            <p class="text-sm">Pengemudi</p>
+            <p class="font-bold">
+              {{ detail.nama_pengemudi }} ({{ detail.no_polisi_kendaraan }})
+            </p>
+          </span>
+        </h1>
+        <div class="mt-1 font-light"></div>
+      </div>
+      <div class="flex justify-end">
+        <div class="flex space-x-2">
+          <button
+            type="button"
+            (click)="selesai()"
+            class="flex items-center justify-center h-10 px-4 py-2 mt-10 font-light text-white bg-green-500 rounded  hover:green-red-700"
+          >
+            <span class="ml-2 text-base font-medium">Selesai</span>
           </button>
-          </div>
         </div>
-      </form>
-     </div>
-     <!-- ... -->
-     <div class="w-4/6 p-8 bg-white max-h-102">
-      <table   class="w-full leading-normal">
-        <thead class="w-full ">
-            <tr  class="flex w-full ">
-                <th
-                    class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200 ">
-                    No
-                </th>
-                <th
-                    class="flex-1 px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                    Status
-                </th>
-                <th
-                    class="flex-1 px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                    SMU
-                </th>
-                <th
-                    class="flex-1 px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                    Koli
-                </th>
-                <th
-                class="flex-1 px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+      </div>
+    </div>
+    <div class="flex gap-4 p-6">
+      <div class="w-2/6"></div>
+      <div class="w-4/6 -mt-8">
+        <span class="-ml-2"> Daftar barang | Total </span>
+        <span class="ml-2 font-bold text-blue-500">
+          {{ data.length }} Koli
+        </span>
+      </div>
+    </div>
+    <div class="flex gap-4 -mt-6">
+      <div class="flex w-2/6 h-auto p-2 bg-white rounded-sm">
+        <form [formGroup]="form" (ngSubmit)="save()" class="h-auto flex-nowrap">
+          <div class="relative flex flex-col w-full">
+            <!--header-->
+            <div
+              class="flex items-center justify-start p-5 border-b border-solid rounded-t  border-blueGray-200"
+            >
+              <h3 class="text-xl font-medium text-gray-700 text-start">
+                Tambah SMU
+              </h3>
+            </div>
+            <!--body-->
+            <div class="relative flex-auto p-6">
+              <div class="w-full">
+                <label
+                  for="price"
+                  class="block text-sm font-medium text-gray-700"
+                  >Nomor SMU</label
+                >
+                <div class="relative mt-1 rounded-md shadow-sm">
+                  <div
+                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                  ></div>
+                  <input
+                    style="text-transform: uppercase"
+                    formControlName="smu"
+                    type="text"
+                    name="price"
+                    [(ngModel)]="no_smu"
+                    noautocomplete
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    (keyup)="onSmu($event)"
+                    id="price"
+                    class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Nomor SMU"
+                  />
+                  <div *ngIf="suggestsmu" class="mt-1">
+                    <div
+                      class="absolute z-40 w-full overflow-y-auto bg-white rounded shadow  top-100 lef-0 max-h-select svelte-5uyqqj"
+                    >
+                      <div class="flex flex-col w-full max-h-40">
+                        <li
+                          *ngFor="let item of suggestsmu"
+                          (click)="smuSelect(item.smu)"
+                          class="p-4 list-none cursor-pointer hover:bg-gray-50"
+                        >
+                          {{ item.smu }}
+                        </li>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="w-full mt-8">
+                <label
+                  for="price"
+                  class="block text-sm font-medium text-gray-700"
+                  >Nama Agen</label
+                >
+                <div class="relative mt-1 rounded-md shadow-sm">
+                  <div
+                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                  ></div>
+                  <input
+                    style="text-transform: uppercase"
+                    formControlName="nama_agen"
+                    type="text"
+                    noautocomplete
+                    autocomplete="off"
+                    [(ngModel)]="customer.customer"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    (keyup)="onCustomer($event)"
+                    class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Nama Agen"
+                  />
+                  <div *ngIf="agens" class="mt-1">
+                    <div
+                      class="absolute z-40 w-full overflow-y-auto bg-white rounded shadow  top-100 lef-0 max-h-select svelte-5uyqqj"
+                    >
+                      <div class="flex flex-col w-full max-h-40">
+                        <li
+                          *ngFor="let item of agens"
+                          (click)="customerSelect(item)"
+                          class="p-4 list-none cursor-pointer hover:bg-gray-50"
+                        >
+                          {{ item.customer }}
+                        </li>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="w-full mt-8">
+                <label
+                  for="price"
+                  class="block text-sm font-medium text-gray-700"
+                  >Nama Perusahaan</label
+                >
+                <div class="relative mt-1 rounded-md shadow-sm">
+                  <div
+                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                  ></div>
+                  <input
+                    style="text-transform: uppercase"
+                    formControlName="company_name"
+                    type="text"
+                    noautocomplete
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    [(ngModel)]="customer.company_name"
+                    class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Nama Perusahaan"
+                  />
+                </div>
+              </div>
+              <div class="grid w-full grid-cols-2 gap-4 mt-8">
+                <div class="col-span-1">
+                  <label
+                    for="price"
+                    class="block text-sm font-medium text-gray-700"
+                    >No. Hp Agen</label
+                  >
+                  <div class="relative mt-1 rounded-md shadow-sm">
+                    <div
+                      class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                    ></div>
+                    <input
+                      style="text-transform: uppercase"
+                      formControlName="no_hp"
+                      type="text"
+                      name="price"
+                      [(ngModel)]="customer.nohp"
+                      id="price"
+                      class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      placeholder="No. Hp Age"
+                    />
+                  </div>
+                </div>
+                <div class="col-span-1">
+                  <label
+                    for="price"
+                    class="block text-sm font-medium text-gray-700"
+                    >Alamat Agen</label
+                  >
+                  <div class="relative mt-1 rounded-md shadow-sm">
+                    <div
+                      class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                    ></div>
+                    <input
+                      style="text-transform: uppercase"
+                      formControlName="alamat"
+                      type="text"
+                      name="price"
+                      [(ngModel)]="customer.alamat"
+                      id="price"
+                      class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      placeholder="Alamat Agen"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="w-full mt-8">
+                <label
+                  for="price"
+                  class="block text-sm font-medium text-gray-700"
+                  >Nama Barang</label
+                >
+                <div class="relative mt-1 rounded-md shadow-sm">
+                  <div
+                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                  ></div>
+                  <input
+                    formControlName="nama_barang"
+                    type="text"
+                    style="text-transform: uppercase"
+                    noautocomplete
+                    [(ngModel)]="barang.nama_barang"
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    (keyup)="onBarang($event)"
+                    class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Nama Barang"
+                  />
+
+                  <div *ngIf="barangs" class="mt-1">
+                    <div
+                      class="absolute z-40 w-full overflow-y-auto bg-white rounded shadow  top-100 lef-0 max-h-select svelte-5uyqqj"
+                    >
+                      <div class="flex flex-col w-full max-h-40">
+                        <li
+                          *ngFor="let item of barangs"
+                          (click)="barangSelect(item)"
+                          class="flex p-4 list-none cursor-pointer  hover:bg-gray-50"
+                        >
+                          <span class="font-semibold text-gray-300">{{
+                            item.kode_barang
+                          }}</span
+                          >&nbsp; - &nbsp; {{ item.nama_barang }}
+                        </li>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--footer-->
+            <div
+              class="flex items-center justify-end p-4 border-t border-solid rounded-b  border-blueGray-200"
+            >
+              <button
+                type="submit"
+                class="flex items-center justify-center px-4 px-6 py-2 py-3 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-blue-500 rounded shadow outline-none  h-9 bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
+              >
+                <div
+                  [hidden]="!isLoading"
+                  class="w-3 h-3 mr-2 border-t-2 border-b-2 border-white rounded-full  animate-spin"
+                ></div>
+
+                Simpan
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- ... -->
+      <div class="w-4/6 p-8 bg-white max-h-102">
+        <table class="w-full leading-normal">
+          <thead class="w-full">
+            <tr class="flex w-full">
+              <th
+                class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200 "
+              >
+                No
+              </th>
+              <th
+                class="flex-1 px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200 "
+              >
+                Status
+              </th>
+              <th
+                class="flex-1 px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200 "
+              >
+                SMU
+              </th>
+              <th
+                class="flex-1 px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200 "
+              >
+                Koli
+              </th>
+              <th
+                class="flex-1 px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200 "
+              >
                 Berat barang
-            </th>
+              </th>
             </tr>
-        </thead>
-        <tbody class="flex flex-col w-full overflow-y-scroll" style="height: 60vh;">
-
-            <tr *ngFor="let data of data; index as i" class="flex bg-emerald-200">
-              <td class="px-5 py-5 text-sm bg-white border-b border-gray-200 ">
-
-                <p class="text-gray-900 whitespace-no-wrap">{{i+1}}</p>
+          </thead>
+          <tbody
+            class="flex flex-col w-full overflow-y-scroll"
+            style="height: 60vh"
+          >
+            <tr
+              *ngFor="let data of data; index as i"
+              class="flex bg-emerald-200"
+            >
+              <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                <p class="text-gray-900 whitespace-no-wrap">{{ i + 1 }}</p>
               </td>
-              <td class="flex-1 px-5 py-5 text-sm bg-white border-b border-gray-200">
-                  <p class="text-gray-900 border p-0.5 border-blue-500 text-center rounded whitespace-no-wrap">BTB</p>
-              </td>
-              <td class="flex-1 px-5 py-5 text-sm bg-white border-b border-gray-200">
-                  <p class="text-gray-900 whitespace-no-wrap">
-                    {{data.smu}}
-                  </p>
-              </td>
-              <td class="flex-1 px-5 py-5 text-sm bg-white border-b border-gray-200">
-                <p class="text-gray-900 whitespace-no-wrap">
-                  {{data.koli}}
+              <td
+                class="flex-1 px-5 py-5 text-sm bg-white border-b border-gray-200 "
+              >
+                <p
+                  class="
+                    text-gray-900
+                    border
+                    p-0.5
+                    border-blue-500
+                    text-center
+                    rounded
+                    whitespace-no-wrap
+                  "
+                >
+                  BTB
                 </p>
               </td>
-              <td class="flex-1 px-5 py-5 text-sm bg-white border-b border-gray-200">
+              <td
+                class="flex-1 px-5 py-5 text-sm bg-white border-b border-gray-200 "
+              >
                 <p class="text-gray-900 whitespace-no-wrap">
-                  {{data.berat_total}} Kg
+                  {{ data.smu }}
                 </p>
               </td>
-          </tr>
-
-        </tbody>
-      </table>
-
-     </div>
-   </div>
-
-   </div>
+              <td
+                class="flex-1 px-5 py-5 text-sm bg-white border-b border-gray-200 "
+              >
+                <p class="text-gray-900 whitespace-no-wrap">
+                  {{ data.koli }}
+                </p>
+              </td>
+              <td
+                class="flex-1 px-5 py-5 text-sm bg-white border-b border-gray-200 "
+              >
+                <p class="text-gray-900 whitespace-no-wrap">
+                  {{ data.berat_total }} Kg
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-
-
+<div
+  [class]="isList ? 'showss' : 'hiddenss'"
+  style="background: rgba(0, 0, 0, 0.3)"
+>
+  <div class="flex flex-col items-center px-5 py-2 bg-white border rounded-lg">
+    <div class="relative block w-20 h-5 mt-2 loader-dots">
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+    </div>
+    <div class="mt-2 text-xs font-light text-center text-gray-500">
+      Silahkan tunggu...
+    </div>
+  </div>
+</div>

@@ -1,15 +1,15 @@
 .active {
-  @apply px-5 py-5 text-sm bg-blue-100 border-b border-gray-200
+  @apply px-5 py-5 text-sm bg-blue-100 border-b border-gray-200;
 }
 
 .not_active {
-  @apply px-5 py-5 text-sm border-b border-gray-200
+  @apply px-5 py-5 text-sm border-b border-gray-200;
 }
 .active1 {
-  @apply px-5 py-5 text-sm bg-green-100 border-b border-gray-200
+  @apply px-5 py-5 text-sm bg-green-100 border-b border-gray-200;
 }
 .active2 {
-  @apply px-5 py-5 text-sm bg-yellow-100 border-b border-gray-200
+  @apply px-5 py-5 text-sm bg-yellow-100 border-b border-gray-200;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -18,6 +18,14 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.disable {
+  @apply flex h-10 px-4 py-2 mt-10 font-light text-gray-400 bg-gray-200 rounded  cursor-not-allowed;
+}
+
+.enable {
+  @apply flex h-10 px-4 py-2 mt-10 font-light  bg-blue-500 rounded text-white  hover:bg-blue-600;
 }

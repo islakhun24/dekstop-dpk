@@ -27,7 +27,7 @@ export class SmuComponent implements OnInit {
     this.id = activateRoute.snapshot.paramMap.get('id')
     setInterval(()=>{
       this.fetchData()
-    },5000)
+    },1000)
    }
 
   ngOnInit(): void {
@@ -35,33 +35,8 @@ export class SmuComponent implements OnInit {
   }
   fetchData(){
     this.apiService.smu_list_checker(this.id).subscribe(async (data:any)=>{
-      const datas = await data.map((val:any)=>{
 
-          let objIndex = this.data.findIndex(((obj:any) => obj.id == val.id));
-          // console.log(objIndex);
-          if(objIndex===-1){
-            this.data.push( {
-              id : val.id,
-              smu : val.smu,
-              nama_barang : val.nama_barang,
-              nama_agen : val.nama_agen,
-              no_hp : val.no_hp,
-              alamat : val.alamat,
-              status : val.status,
-              koli : val.koli,
-              berat_awal : val.berat_awal,
-              berat_recharge_cargo : val.berat_recharge_cargo,
-              berat_total : val.berat_total,
-              checker : val.checker,
-              project_id : val.project_id,
-              select : false
-             })
-          }
-
-      })
-      const data2 : any = await Promise.all(datas)
-      console.log(this.data);
-      // this.data = this.mergeDiffs(this.data, data2)
+      this.data = data
 
     })
 
@@ -71,19 +46,16 @@ export class SmuComponent implements OnInit {
     })
   }
   check(event: any, pos: any, id:any){
-    if ( event.target.checked ) {
-        this.checkedList.push(this.data[pos])
-        let objIndex = this.data.findIndex(((obj:any) => obj.id == id));
-        this.data[objIndex].select = true
-        console.log(this.data);
-      }else{
-        this.checkedList = this.checkedList.filter(( obj: any ) => {
-          return obj.id !== this.data[pos].id;
-        });
-        let objIndex = this.data.findIndex(((obj:any) => obj.id == id));
-        this.data[objIndex].select = false
-        console.log(this.data);
+    const check : boolean = event.target.checked
+    this.apiService.updatechecker(id, {check: check}).subscribe(
+      (data:any)=>{
+        this.apiService.smu_list_checker(this.id).subscribe(async (data:any)=>{
+
+          this.data = data
+
+        })
       }
+    )
 
   }
 
