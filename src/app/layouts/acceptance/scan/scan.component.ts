@@ -79,9 +79,17 @@ export class ScanComponent implements AfterViewInit {
     formdata.project_id = this.id;
     this.isLoading = true;
     this.apiService.smu_create2(formdata).subscribe((data: any) => {
-      this.isLoading = false;
-      this.data = data;
-      this.showModal = !this.showModal;
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1500,
+      }).then((data) => {
+        this.isLoading = false;
+        this.data = data;
+        this.showModal = !this.showModal;
+      });
     });
   }
   back() {}

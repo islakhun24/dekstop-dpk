@@ -1,7 +1,7 @@
 import { environment } from 'src/environments/environment.prod';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../../../services/api.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 // import { timeStamp, table } from 'console';
 
@@ -58,7 +58,6 @@ export class DetailComponent implements OnInit {
       asal_tps: [''],
       kota_asal: [''],
       kota_tujuan: [''],
-      tanggal_penerbangan: [''],
       nama_pesawat: [''],
       nomor_polisi_kendaraan: [''],
       nama_pengemudi: [''],
@@ -79,9 +78,20 @@ export class DetailComponent implements OnInit {
       truck_security_steal: [''],
       truck_security_label: [''],
       driver_name: [''],
+
+      tanggals: this.fb.array([]),
     });
   }
   smu3: any = [];
+  get tanggals(): FormArray {
+    return this.form.get('tanggals') as FormArray;
+  }
+  items(): FormGroup {
+    return this.fb.group({
+      tanggal_penerbangan: '',
+      smu: '',
+    });
+  }
   ngOnInit(): void {
     this.id = this.activateRoute.snapshot.paramMap.get('id');
     this.apiService.csd_detailt(this.id).subscribe(
@@ -90,6 +100,14 @@ export class DetailComponent implements OnInit {
         this.project = data.project;
         this.detail = data.detail;
         this.warehouses = data.warehouse;
+        this.warehouses.forEach((val: any) => {
+          this.tanggals.push(
+            this.fb.group({
+              smu: val.smu,
+              tanggal_penerbangan: val.tanggal_penerbangan,
+            })
+          );
+        });
         this.spx = this.detail.spx;
         this.sco = this.detail.sco;
         this.shr = this.detail.shr;
@@ -114,9 +132,7 @@ export class DetailComponent implements OnInit {
         this.detail.status_keamanan = this.detail.status_keamanan;
         this.metode_pemeriksaan = this.detail.metode_pemeriksaan;
         this.transit = this.detail.transit;
-        this.detail.tanggal_penerbangan = this.tanggal(
-          this.detail.tanggal_penerbangan
-        );
+
         this.apiService.csd_smu(this.id).subscribe(
           (data) => {
             this.smu = data;
@@ -133,6 +149,7 @@ export class DetailComponent implements OnInit {
       }
     );
   }
+
   save(action: any) {
     this.isLoading = true;
     let formdata = this.form.value;
@@ -157,9 +174,7 @@ export class DetailComponent implements OnInit {
             this.detail.status_keamanan = this.detail.status_keamanan;
             this.metode_pemeriksaan = this.detail.metode_pemeriksaan;
             this.transit = this.detail.transit;
-            this.detail.tanggal_penerbangan = this.tanggal(
-              this.detail.tanggal_penerbangan
-            );
+
             // this.form.get('tanggal_penerbangan')?.setValue(this.detail.tanggal_penerbangan)
             this.apiService.csd_smu(this.id).subscribe(
               (data) => {
@@ -192,13 +207,6 @@ export class DetailComponent implements OnInit {
         console.log(err);
       }
     );
-  }
-  tanggal(str: string) {
-    const string1 = str.split(' ');
-    const date = string1[0];
-    const date1 = date.split('-');
-
-    return date1[0] + '-' + date1[1] + '-' + date1[2];
   }
 
   changeTransit(e: any) {

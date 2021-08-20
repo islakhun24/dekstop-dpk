@@ -3,7 +3,7 @@ import { ApiService } from './../../../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-document',
   templateUrl: './document.component.html',
@@ -14,7 +14,8 @@ export class DocumentComponent implements OnInit {
   routeState: any;
   state: any;
   id: any;
-  form: FormGroup;
+  public form: FormGroup;
+  public itemsList!: FormArray;
   detail: any = {};
   data_smu: any = [];
   isi_kiriman: any;
@@ -45,7 +46,6 @@ export class DocumentComponent implements OnInit {
       isi_kiriman: [''],
       kota_asal: [''],
       kota_tujuan: [''],
-      tanggal_penerbangan: [''],
       nama_pesawat: [''],
       nomor_polisi_kendaraan: [''],
       nama_pengemudi: [''],
@@ -57,11 +57,21 @@ export class DocumentComponent implements OnInit {
       tujuan_transit: [''],
       warehouse: [''],
       time_of_departure: [''],
+      tanggals: this.fb.array([]),
     });
     this.id = activateRoute.snapshot.paramMap.get('id');
     apiService.document_checker(this.id).subscribe((data: any) => {
       console.log(data);
       this.warehouses = data.warehouses;
+      this.warehouses.forEach((val: any) => {
+        this.tanggals.push(
+          fb.group({
+            smu: val.smu,
+            tanggal_penerbangan: val.tanggal_penerbangan,
+          })
+        );
+      });
+
       this.data = data.smu;
       this.others = data.data;
       this.detail = data.detail;
@@ -77,17 +87,32 @@ export class DocumentComponent implements OnInit {
       });
     });
   }
+  get tanggals(): FormArray {
+    return this.form.get('tanggals') as FormArray;
+  }
+  items(): FormGroup {
+    return this.fb.group({
+      tanggal_penerbangan: '',
+      smu: '',
+    });
+  }
   shows = false;
   toggleShow() {
     this.shows = !this.shows;
   }
   ngOnInit(): void {
+    this.itemsList = this.form.get('items') as FormArray;
     // console.log(this.activateRoute.snapshot.queryParams['data']);
   }
   isLoading: boolean = false;
   save() {
     this.isLoading = true;
+
+    // let items = this.form.get('items') as FormArray;
+
     let formdata = this.form.value;
+    // console.log(formdata);
+
     formdata.qty = this.others.koli;
     formdata.total_berat = this.others.berat_total;
     formdata.smu = this.smu3;
@@ -177,5 +202,8 @@ export class DocumentComponent implements OnInit {
       warehouse: value,
       warehouseid: warehouse,
     });
+  }
+  selectDate(e: any) {
+    alert(e.target.value);
   }
 }

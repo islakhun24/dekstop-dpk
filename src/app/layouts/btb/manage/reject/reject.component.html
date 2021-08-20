@@ -34,8 +34,8 @@
   <form class="col-span-2" [formGroup]="form" (ngSubmit)="save()">
     <div class="p-8 bg-white rounded shadow-lg">
       <div class="w-full p-4 bg-blue-200 rounded">
-        <h1 class="font-medium">{{ detail.smu }}</h1>
-        <p class="font-light">{{ detail.koli }}</p>
+        <h1 class="font-medium">{{ detail?.smu }}</h1>
+        <p class="font-light">{{ detail?.koli }}</p>
       </div>
       <div class="grid grid-cols-2">
         <div class="mt-8">
@@ -211,5 +211,22 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<div
+  [class]="isList ? 'showss' : 'hiddenss'"
+  style="background: rgba(0, 0, 0, 0.3)"
+>
+  <div class="flex flex-col items-center px-5 py-2 bg-white border rounded-lg">
+    <div class="relative block w-20 h-5 mt-2 loader-dots">
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+      <div class="absolute top-0 w-3 h-3 mt-1 bg-blue-500 rounded-full"></div>
+    </div>
+    <div class="mt-2 text-xs font-light text-center text-gray-500">
+      Silahkan tunggu...
+    </div>
   </div>
 </div>

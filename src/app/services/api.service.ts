@@ -272,4 +272,8 @@ export class ApiService {
   download_csd(id: any) {
     return this.http.get(`${base_url}exp/csd/${id}`);
   }
+
+  detail_smu(id: any) {
+    return this.http.get(`${base_url}revisi/btb/detail/smu/${id}`);
+  }
 }

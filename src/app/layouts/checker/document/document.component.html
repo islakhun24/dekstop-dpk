@@ -76,6 +76,126 @@
           </div>
         </div>
       </div>
+      <div class="grid w-full grid-cols-4 gap-4 mt-4 ml-4">
+        <div class="col-span-1">
+          <label for="price" class="block text-sm font-medium text-gray-700"
+            >Nama Agen</label
+          >
+        </div>
+        <div class="col-span-1">
+          <label for="price" class="block text-sm font-medium text-gray-700"
+            >No SMU</label
+          >
+        </div>
+        <div class="col-span-1">
+          <label for="price" class="block text-sm font-medium text-gray-700"
+            >Warehouse</label
+          >
+        </div>
+
+        <div class="col-span-1">
+          <label for="price" class="block text-sm font-medium text-gray-700"
+            >Tanggal Penerbangan</label
+          >
+        </div>
+      </div>
+      <div formArrayName="tanggals">
+        <div *ngFor="let itemGroup of tanggals.controls; let i = index">
+          <div class="grid w-full grid-cols-4 gap-4 ml-4" [formGroupName]="i">
+            <div class="col-span-1">
+              <div class="relative mt-1 rounded-md shadow-sm">
+                <div
+                  class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                ></div>
+                <input
+                  type="text"
+                  [value]="
+                    warehouses[i].warehouse === 'PERSERO BATAM' ||
+                    warehouses[i].warehouse === 'DBM'
+                      ? warehouses[i].nama_agen
+                      : warehouses[i].nama_agen +
+                        ' ( ' +
+                        warehouses[i].smu +
+                        ' )'
+                  "
+                  id="price"
+                  [readonly]="true"
+                  class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Isi Kiriman"
+                />
+              </div>
+            </div>
+            <div class="col-span-1">
+              <div class="relative mt-1 rounded-md shadow-sm">
+                <div
+                  class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                ></div>
+                <input
+                  type="text"
+                  [value]="
+                    warehouses[i].maskapai + ' (' + warehouses[i].smu + ')'
+                  "
+                  id="price"
+                  [readonly]="true"
+                  class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Isi Kiriman"
+                />
+              </div>
+            </div>
+            <div class="col-span-1">
+              <div class="relative mt-1 rounded-md shadow-sm">
+                <div
+                  class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
+                ></div>
+                <input
+                  *ngIf="
+                    warehouses[i].warehouse === 'PERSERO BATAM' ||
+                    warehouses[i].warehouse === 'DBM'
+                  "
+                  type="text"
+                  id="price"
+                  [readonly]="true"
+                  [value]="warehouses[i].warehouse"
+                  class="block w-full bg-gray-200 border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Isi Kiriman"
+                />
+                <select
+                  *ngIf="
+                    warehouses[i].warehouse !== 'PERSERO BATAM' &&
+                    warehouses[i].warehouse !== 'DBM'
+                  "
+                  (change)="selectWarehhouse($event, warehouses[i].warehouse)"
+                  class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  id=""
+                >
+                  <option value="" hidden>Pilih Warehouse</option>
+                  <option value="DBM">DBM</option>
+                  <option value="PERSERO BATAM">PERSERO BATAM</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-span-1">
+              <input
+                formControlName="tanggal_penerbangan"
+                type="date"
+                name="price"
+                id="price"
+                class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="No."
+              />
+              <input
+                formControlName="smu"
+                type="hidden"
+                name="price"
+                id="price"
+                [(ngModel)]="warehouses[i].smu"
+                class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="No."
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="grid w-full grid-cols-2 gap-16">
       <div class="col-span-1">
@@ -98,73 +218,7 @@
             />
           </div>
         </div>
-        <div class="grid w-full grid-cols-2 gap-4 mt-4 ml-4">
-          <div class="col-span-1">
-            <label for="price" class="block text-sm font-medium text-gray-700"
-              >Nama Agen</label
-            >
-          </div>
-          <div class="col-span-1">
-            <label for="price" class="block text-sm font-medium text-gray-700"
-              >Warehouse</label
-            >
-          </div>
-        </div>
 
-        <div
-          *ngFor="let item of warehouses"
-          class="grid w-full grid-cols-2 gap-4 ml-4"
-        >
-          <div class="col-span-1">
-            <div class="relative mt-1 rounded-md shadow-sm">
-              <div
-                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-              ></div>
-              <input
-                type="text"
-                [value]="
-                  item.warehouse === 'PERSERO BATAM' || item.warehouse === 'DBM'
-                    ? item.nama_agen
-                    : item.nama_agen + ' ( ' + item.smu + ' )'
-                "
-                id="price"
-                [readonly]="true"
-                class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Isi Kiriman"
-              />
-            </div>
-          </div>
-          <div class="col-span-1">
-            <div class="relative mt-1 rounded-md shadow-sm">
-              <div
-                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-              ></div>
-              <input
-                *ngIf="
-                  item.warehouse === 'PERSERO BATAM' || item.warehouse === 'DBM'
-                "
-                type="text"
-                id="price"
-                [readonly]="true"
-                [value]="item.warehouse"
-                class="block w-full bg-gray-200 border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Isi Kiriman"
-              />
-              <select
-                *ngIf="
-                  item.warehouse !== 'PERSERO BATAM' && item.warehouse !== 'DBM'
-                "
-                (change)="selectWarehhouse($event, item.warehouse)"
-                class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                id=""
-              >
-                <option value="" hidden>Pilih Warehouse</option>
-                <option value="DBM">DBM</option>
-                <option value="PERSERO BATAM">PERSERO BATAM</option>
-              </select>
-            </div>
-          </div>
-        </div>
         <div class="w-full mt-4">
           <div class="relative text-left">
             <div class="relative flex items-center -mr-4">
@@ -258,62 +312,7 @@
             </div>
           </div>
         </div>
-        <div class="grid w-full grid-cols-2 gap-4 mt-4 ml-4">
-          <div>
-            <label for="price" class="block text-sm font-medium text-gray-700"
-              >Tanggal Penerbangan</label
-            >
-            <div class="relative mt-1 rounded-md shadow-sm">
-              <div
-                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-              ></div>
-              <input
-                formControlName="tanggal_penerbangan"
-                type="date"
-                name="price"
-                id="price"
-                class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="No."
-              />
-            </div>
-          </div>
-          <div>
-            <label for="price" class="block text-sm font-medium text-gray-700"
-              >Jam Penerbangan</label
-            >
-            <div class="relative mt-1 rounded-md shadow-sm">
-              <div
-                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-              ></div>
-              <input
-                formControlName="time_of_departure"
-                type="time"
-                name="price"
-                id="price"
-                class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="No."
-              />
-            </div>
-          </div>
-        </div>
-        <div class="w-full mt-4 ml-4">
-          <label for="price" class="block text-sm font-medium text-gray-700"
-            >Nama Pesawat</label
-          >
-          <div class="relative mt-1 rounded-md shadow-sm">
-            <div
-              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none "
-            ></div>
-            <input
-              formControlName="nama_pesawat"
-              type="text"
-              name="price"
-              id="price"
-              class="block w-full border-gray-300 rounded-md  form-input focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Nama Pesawat"
-            />
-          </div>
-        </div>
+
         <div class="w-full mt-4 ml-4">
           <label for="price" class="block text-sm font-medium text-gray-700"
             >Nomor Polisi Kendaraan</label

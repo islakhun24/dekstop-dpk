@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckerComponent implements OnInit {
   id: any;
+  isList = true;
   data: any = [];
   detail: any = {};
   form: FormGroup;
@@ -28,12 +29,19 @@ export class CheckerComponent implements OnInit {
       berat: [''],
     });
     this.id = activateRoute.snapshot.paramMap.get('id');
+    this.apiService.project_detail(this.id).subscribe((data: any) => {
+      this.details = data.data;
+      this.apiService.smu_list_checker(this.id).subscribe((data: any) => {
+        this.data = data;
+        this.detail = data[0];
+        this.isList = false;
+
+        // console.log(this.data);
+      });
+    });
     setInterval(() => {
       this.fetchData();
     }, 3000);
-    this.apiService.project_detail(this.id).subscribe((data: any) => {
-      this.details = data.data;
-    });
   }
 
   fetchData() {
@@ -88,6 +96,7 @@ export class CheckerComponent implements OnInit {
     }
 
     let fomdata = this.form.value;
+
     fomdata.berat_awal = fomdata.berat;
     fomdata.berat_recharge_cargo = 0;
     fomdata.berat_total = fomdata.berat;
@@ -98,15 +107,30 @@ export class CheckerComponent implements OnInit {
       return Swal.fire(
         'Data tidak boleh 0!',
         'Silahkan Periksa kembali!',
-        'success'
+        'error'
       );
     }
-
-    return this.apiService.smu_checker(fomdata).subscribe((data: any) => {
-      this.form.reset();
-      this.data = data;
-      this.detail = data[0];
-    });
+    if (fomdata.berat > 0) {
+      return this.apiService.smu_checker(fomdata).subscribe((data: any) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Data disimpan',
+          showConfirmButton: false,
+          timer: 1500,
+        }).then(() => {
+          this.form.reset();
+          this.data = data;
+          this.detail = data[0];
+        });
+      });
+    } else {
+      return Swal.fire(
+        'Data tidak boleh kurang dari 0!',
+        'Silahkan Periksa kembali!',
+        'error'
+      );
+    }
   }
 
   selesai() {
@@ -138,6 +162,7 @@ export class CheckerComponent implements OnInit {
               position: 'center',
               icon: 'error',
               title: 'Gagal',
+              text: err.error.message,
               showConfirmButton: false,
               timer: 1500,
             });
@@ -145,5 +170,29 @@ export class CheckerComponent implements OnInit {
         );
       }
     });
+  }
+
+  reject() {
+    this.isList = true;
+    this.apiService.btb_reject(this.id).subscribe(
+      (data: any) => {
+        this.isList = false;
+        if (data.length === 0) {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Tidak ada data yang di reject',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          this.router.navigate(['/btb/manage/reject', this.id]);
+        }
+      },
+      (err) => {
+        this.isList = false;
+      }
+    );
   }
 }
