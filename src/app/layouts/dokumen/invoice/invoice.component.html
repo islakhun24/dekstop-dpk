@@ -2,11 +2,26 @@
   <h1 class="text-2xl">Invoice</h1>
   <div class="flex justify-between w-full">
     <div class="flex gap-2 mt-2">
-      <button (click)="click(true)"  [class]="isClick === true ? 'aktif' : 'non-aktif'">Aktif</button>
-      <button (click)="click(false)" [class]="isClick === false ? 'aktif' : 'non-aktif'">Riwayat</button>
+      <button
+        (click)="click(true)"
+        [class]="isClick === true ? 'aktif' : 'non-aktif'"
+      >
+        Aktif
+      </button>
+      <button
+        (click)="click(false)"
+        [class]="isClick === false ? 'aktif' : 'non-aktif'"
+      >
+        Riwayat
+      </button>
     </div>
     <div class="flex justify-end">
-      <button class="px-8 py-1 text-sm text-white bg-blue-500 rounded-lg">Cetak Semua</button>
+      <button
+        (click)="cetak_semua()"
+        class="px-8 py-1 text-sm text-white bg-blue-500 rounded-lg"
+      >
+        Cetak Semua
+      </button>
     </div>
   </div>
   <router-outlet></router-outlet>
