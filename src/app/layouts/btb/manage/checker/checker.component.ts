@@ -31,13 +31,18 @@ export class CheckerComponent implements OnInit {
     this.id = activateRoute.snapshot.paramMap.get('id');
     this.apiService.project_detail(this.id).subscribe((data: any) => {
       this.details = data.data;
-      this.apiService.smu_list_checker(this.id).subscribe((data: any) => {
-        this.data = data;
-        this.detail = data[0];
-        this.isList = false;
+      this.apiService.smu_list_checker(this.id).subscribe(
+        (data: any) => {
+          this.isList = false;
+          this.data = data.data;
+          this.detail = this.data[0];
 
-        // console.log(this.data);
-      });
+          // console.log(this.data);
+        },
+        (err) => {
+          this.isList = false;
+        }
+      );
     });
     setInterval(() => {
       this.fetchData();
@@ -46,8 +51,8 @@ export class CheckerComponent implements OnInit {
 
   fetchData() {
     this.apiService.smu_list_checker(this.id).subscribe((data: any) => {
-      this.data = data;
-      this.detail = data[0];
+      this.data = data.data;
+      this.detail = this.data[0];
       console.log(this.detail);
 
       // console.log(this.data);
