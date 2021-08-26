@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { LayoutsComponent } from './layouts/layouts.component';
 
-import { authInterceptorProviders } from "./interceptors/auth.interceptor";
+import { authInterceptorProviders } from './interceptors/auth.interceptor';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { UserModule } from './layouts/user/user.module';
@@ -18,33 +18,30 @@ import { CheckerModule } from './layouts/checker/checker.module';
 // import { CsdModule } from './layouts/dokumen/csd/csd.module';
 import { InvoiceModule } from './layouts/dokumen/invoice/invoice.module';
 // import { ModalComponent } from './modal/modal.component';
-
+import { NgxElectronModule } from 'ngx-electron';
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    LayoutsComponent
-  ],
+  declarations: [AppComponent, LoginComponent, LayoutsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     UserModule,
     HargaModule,
     DokumenModule,
     CustomerModule,
     CheckerModule,
-    // CsdModule,
+    NgxElectronModule,
     InvoiceModule,
   ],
   providers: [
     {
       provide: LocationStrategy,
-      useClass: HashLocationStrategy
+      useClass: HashLocationStrategy,
     },
-    authInterceptorProviders
+    authInterceptorProviders,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

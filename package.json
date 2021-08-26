@@ -1,12 +1,14 @@
 {
   "name": "regulatagen",
   "version": "0.0.0",
+  "main": "app.js",
   "scripts": {
     "ng": "ng",
-    "start": "nodemon server.js",
+    "start": "ng build --base-href   && electron .",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +24,7 @@
     "@ericblade/quagga2": "^1.4.1",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/typography": "^0.4.1",
+    "@types/node": "^16.7.1",
     "express": "^4.17.1",
     "file-saver": "^2.0.5",
     "html2canvas": "^1.1.4",
@@ -29,6 +32,7 @@
     "js-excel-template": "^2.0.4",
     "jspdf": "^2.3.1",
     "ngx-barcode-scanner": "^0.2.0",
+    "ngx-electron": "^2.2.0",
     "nodemon": "^2.0.12",
     "pdfmake": "^0.2.0",
     "rxjs": "~6.6.0",
@@ -43,8 +47,8 @@
     "@angular/cli": "~12.0.5",
     "@angular/compiler-cli": "~12.0.5",
     "@types/jasmine": "~3.6.0",
-    "@types/node": "^12.20.17",
     "@types/pdfmake": "^0.1.18",
+    "electron": "^13.2.2",
     "jasmine-core": "~3.7.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
