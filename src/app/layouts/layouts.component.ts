@@ -96,6 +96,10 @@ export class LayoutsComponent implements OnInit {
       this.isActive = 9
       this.title = 'Team'
     }
+    if(url.includes('settings')){
+      this.isActive = 10
+      this.title = 'Settings'
+    }
     // this.apiService.n
 
 
@@ -142,6 +146,10 @@ export class LayoutsComponent implements OnInit {
     if(num==9){
       this.router.navigate(['/team'])
       this.title = 'Team'
+    }
+    if(num==10){
+      this.router.navigate(['/settings'])
+      this.title = 'Settings'
     }
   }
   clickLogout(e: Event){

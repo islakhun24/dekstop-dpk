@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 
+
+import { webSocket } from "rxjs/webSocket";
+const subject = webSocket("ws://localhost:8081");
 @Component({
   selector: 'app-reject',
   templateUrl: './reject.component.html',
@@ -46,6 +49,7 @@ export class RejectComponent implements OnInit {
       this.data = data;
     });
   }
+  berat:any
   ngOnInit(): void {
     this.id = this.activateRoute.snapshot.paramMap.get('id');
     this.apiService.btb_reject(this.id).subscribe(
@@ -66,6 +70,15 @@ export class RejectComponent implements OnInit {
       this.disabled();
       // this.isList = false;
     }, 3000);
+    subject.subscribe(
+      (msg:any) => {
+       this.berat = msg
+        
+
+      }, // Called whenever there is a message from the server.
+      err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
+      () => console.log('complete') // Called when connection is closed (for whatever reason).
+    );
   }
   keyup(e: any) {
     let num = e.target?.value;

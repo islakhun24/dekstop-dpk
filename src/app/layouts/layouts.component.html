@@ -177,6 +177,68 @@
               <span class="ml-3">BTB</span>
             </a>
           </li>
+             <li
+            *ngIf="user.unit == 'BTB' || user.wewenang == 'BTB'"
+            class="my-px"
+          >
+            <a
+              [routerLink]="['./']"
+              (click)="click(10)"
+              [class]="isActive === 10 ? 'isActive' : 'isNotActive'"
+            >
+              <span
+                [class]="
+                  isActive === 10
+                    ? 'flex items-center justify-center text-lg text-gray-100'
+                    : 'flex items-center justify-center text-lg text-gray-500'
+                "
+              >
+                <svg
+                  class="w-5 h-5 fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  version="1.1"
+                  id="Capa_1"
+                  x="0px"
+                  y="0px"
+                  viewBox="0 0 512 512"
+                  style="enable-background: new 0 0 512 512"
+                  xml:space="preserve"
+                >
+                  <g>
+                    <g>
+                      <path
+                        d="M256,240.123c-41.857,0-75.909,34.052-75.909,75.907c0,36.723,26.215,67.433,60.913,74.414v-74.413h29.992v74.413    c34.699-6.981,60.913-37.691,60.913-74.414C331.909,274.175,297.857,240.123,256,240.123z"
+                      />
+                    </g>
+                  </g>
+                  <g>
+                    <g>
+                      <path
+                        d="M87.044,150.149L0,481.915h512l-87.045-331.766H301.012v-30.04h94.902c41.371,0,75.028-33.657,75.028-75.028V30.085    H41.059v14.996c0,41.371,33.657,75.028,75.028,75.028h94.902v30.04H87.044z M256,210.131c58.394,0,105.901,47.506,105.901,105.899    c0,58.393-47.507,105.9-105.901,105.9s-105.901-47.507-105.901-105.9C150.098,257.638,197.605,210.131,256,210.131z"
+                      />
+                    </g>
+                  </g>
+                  <g></g>
+                  <g></g>
+                  <g></g>
+                  <g></g>
+                  <g></g>
+                  <g></g>
+                  <g></g>
+                  <g></g>
+                  <g></g>
+                  <g></g>
+                  <g></g>
+                  <g></g>
+                  <g></g>
+                  <g></g>
+                  <g></g>
+                </svg>
+              </span>
+              <span class="ml-3">Settings</span>
+            </a>
+          </li>
           <li *ngIf="user.level == '1'" class="my-px">
             <a
               [routerLink]="['./']"

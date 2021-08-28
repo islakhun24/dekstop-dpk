@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DokumenComponent } from './dokumen/dokumen.component';
 import { HargaComponent } from './harga/harga.component';
 import { UserComponent } from './user/user.component';
+import { SettingBtbComponent } from './setting-btb/setting-btb.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
+  {
+    path: 'settings',
+    component: SettingBtbComponent,
+    loadChildren: () => import('./setting-btb/setting-btb.module').then(m => m.SettingBtbModule)
   },
   {
     path: 'acceptance',

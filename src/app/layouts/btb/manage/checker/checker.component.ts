@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 
+import { webSocket } from "rxjs/webSocket";
+const subject = webSocket("ws://localhost:8081");
 @Component({
   selector: 'app-checker',
   templateUrl: './checker.component.html',
@@ -74,7 +76,20 @@ export class CheckerComponent implements OnInit {
       }
     });
   }
-  ngOnInit(): void {}
+  berat:any
+  ngOnInit(): void {
+    subject.subscribe(
+      (msg:any) => {
+        console.log(msg);
+        
+       this.berat = msg
+        
+
+      }, // Called whenever there is a message from the server.
+      err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
+      () => console.log('complete') // Called when connection is closed (for whatever reason).
+    );
+  }
   click(i: any) {
     if (i !== 0) {
       this.detail = this.data[i];
